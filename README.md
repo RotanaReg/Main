@@ -2,7 +2,7 @@
 
 Project Java EE Kurs
 
-##Hemsida för kursverksamhet
+## Hemsida för kursverksamhet
 
 Bygga en hemsida där man kan lägga upp kurser registrera lärare och elever. Föra närvaro per lektionstillfälle. Varje användare kommer ha en login med rättigheter enligt nedan
 
