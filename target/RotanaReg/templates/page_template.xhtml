@@ -12,18 +12,14 @@
         <h:outputStylesheet library="css" name="style1.css"/>
     </h:head>
     <h:body>
-        <header>
-            <ui:include src="header.xhtml"/>
-            <ui:include src="menu.xhtml"/>
-        </header>
 
-            <section>
+            <ui:include src="/templates/header.xhtml"/>
+            <ui:include src="menu.xhtml"/>
+
+        <section>
                 <ui:insert name="content"/>
             </section>
-
-        <footer>
-            <p> Tack för besöket</p>
-        </footer>
+        <ui:include src="/templates/footer.xhtml"/>
     </h:body>
 </f:view>
 </html>
