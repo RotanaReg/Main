@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:cc="http://java.sun.com/jsf/composite">
+<ui:component>
+    <cc:interface>
+        <cc:attribute name="model" type="com.rotanareg.skolan.SignIn" required="true"/>
+    </cc:interface>
+    <cc:implementation>
+        <h:messages styleClass="validation-messages"/>
+        <h:form>
+            <h:panelGrid columns="2" styleClass="form-grid" columnClasses="form-column-label,form-column-input">
+                <h:outputLabel for="usernameInput">Användarnamn</h:outputLabel>
+                <h:inputText id="usernameInput" value="#{cc.attrs.model.username}" size="20"/>
+
+                <h:outputLabel for="passwordInput">Password</h:outputLabel>
+                <h:inputSecret id="passwordInput" value="#{cc.attrs.model.password}" size="20"/>
+
+                <h:outputText value=""/>
+                <h:commandButton id="submitButton" value="Submit" action="#{cc.attrs.model.submit}"/>
+            </h:panelGrid>
+        </h:form>
+    </cc:implementation>
+</ui:component>
+</html>
+
