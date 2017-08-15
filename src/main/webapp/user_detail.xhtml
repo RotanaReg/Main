@@ -43,9 +43,14 @@
                     <h:outputLabel for="birthDate">Födelsedatum</h:outputLabel>
                     <h:inputText id="birthDate" p:type="date" value="#{userDetail.user.birthDate}">
                         <f:convertDateTime pattern="yyyy-MM-dd"/>
-                    </h:inputText>
-                        <h:outputLabel for="roll">Roll</h:outputLabel>
-                        <h:inputText id="roll" value="#{userDetail.user.roll}" size = "10"/>
+						
+					</h:inputText>
+                     <h:outputLabel for="menu" value="Roll:" />
+					 
+                    <h:selectOneRadio rendered="true" id="menu" value="#{checkboxView.selectedRoll}" label="Roll"
+                                          filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                        <f:selectItems value="#{checkboxView.roll}" />
+                    </h:selectOneRadio>
 
 
                 <h:outputText value=""/>
