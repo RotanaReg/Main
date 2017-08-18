@@ -36,6 +36,12 @@
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
         </dependency>
+		
+		<dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>6.1</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/org.eclipse.persistence.jpa -->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
@@ -43,13 +49,9 @@
             <version>2.6.4</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>6.1</version>
-        </dependency>
+       
 
+       
 
     </dependencies>
 

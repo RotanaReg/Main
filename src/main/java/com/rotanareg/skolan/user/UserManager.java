@@ -1,13 +1,14 @@
 package com.rotanareg.skolan.user;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 
 @Named
-@SessionScoped
+@SessionScoped // Marko jobbar på
 public class UserManager implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,24 +29,25 @@ public class UserManager implements Serializable {
     public String signIn(String username, String password) {
         User user = userService.getUser(username);
         if (user == null || !password.equals(user.getPassword())) {
-            return "signIn";
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Skriv in ditt användarnamn och password"));
+            return "failure";
         }
+
         currentUser = user;
-        return "admin";
+        return "success";
     }
 
-    public String signOut() {
+    public void signOut() {
 
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-
-
-        return "first?faces-redirect=true";
+        //return "index?faces-redirect =true";
     }
 
     public String save(User user) {
         userService.saveUser(user);
         currentUser = user;
-        return "first";
+        return "index";
     }
 }
 

@@ -1,7 +1,11 @@
 package com.rotanareg.skolan.user;
 
+import com.rotanareg.skolan.Role;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.io.Serializable;
+import java.util.List;
 
 public class User implements Serializable {
 
@@ -14,8 +18,16 @@ public class User implements Serializable {
     private String emailAddress;
     private String phoneNumber;
     private Date birthDate;
-    private String roll;
+    private Role role;
+    private List<Role> rolesList;
 
+    public User(){
+        rolesList = new ArrayList();
+        rolesList.add(Role.STUDENT);
+        rolesList.add(Role.TEACHER);
+        rolesList.add(Role.ADMIN);
+        role = Role.STUDENT;     // set the first role as default
+    }
 
     public String getUsername() {
         return username;
@@ -33,7 +45,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-
     public String getFirstName() {
         return firstName;
     }
@@ -47,10 +58,8 @@ public class User implements Serializable {
     }
 
     public void setLastName(String lastName) {
-
         this.lastName = lastName;
     }
-
 
     public String getEmailAddress() {
         return emailAddress;
@@ -76,13 +85,18 @@ public class User implements Serializable {
         this.birthDate = birthDate;
     }
 
-    public String getRoll() {
-        return roll;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoll(String roll) {
-        this.roll = roll;
+    public void setRole(Role role) {
+        this.role = role;
     }
+
+    public List<Role> getRolesList() {
+        return rolesList;
+    }
+
 
 }
 

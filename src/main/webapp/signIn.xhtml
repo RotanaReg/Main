@@ -8,6 +8,7 @@
 
 <ui:composition template="/templates/template_page.xhtml">
     <ui:param name="pageTitle" value="Sign In"/>
+	
     <ui:define name="panel-top">
         <section>
             <ui:fragment rendered="#{not userManager.signedIn}">
@@ -25,16 +26,20 @@
         </section>
     </ui:define>
 
+	
     <ui:define name="panel-main">
         <ui:fragment rendered="#{not userManager.signedIn}">
             <section>
+                <h:messages styleClass="validation-messages"/>
                 <h:form>
                     <h:panelGrid columns="2" styleClass="form-grid" columnClasses="form-column-label,form-column-input">
                         <h:outputLabel for="username">Användarnamn</h:outputLabel>
-                        <h:inputText id="username" value="#{signIn.username}"/>
+						<h:inputText id="username" value="#{signIn.username}" size="20"/>
+                                   
+                   
 
                         <h:outputLabel for="password">Password</h:outputLabel>
-                        <h:inputSecret id="password" value="#{signIn.password}"/> <!--anroppar user bean-->
+                         <h:inputSecret id="password" value="#{signIn.password}" size="20"/>
 
                         <h:outputText value=""/>
                         <h:commandButton value="Submit" action="#{signIn.submit}"/>  <!--anroppar usermanager-->

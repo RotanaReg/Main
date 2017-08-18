@@ -1,10 +1,10 @@
 package com.rotanareg.skolan.user;
 
+
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-
 @Named
 @ViewScoped
 public class UserDetail implements Serializable {
