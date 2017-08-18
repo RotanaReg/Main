@@ -5,3 +5,4 @@ target/*
 *.war
 >>>>>>> 21f7771889fbd331d8067aeaacba276c2ab841e7
 target/RotanaReg.war
+*.war
