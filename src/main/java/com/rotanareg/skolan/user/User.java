@@ -2,22 +2,19 @@ package com.rotanareg.skolan.user;
 
 import com.rotanareg.skolan.Role;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.io.Serializable;
 import java.util.List;
+
 
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String username;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String emailAddress;
-    private String phoneNumber;
-    private Date birthDate;
     private Role role;
     private List<Role> rolesList;
 
@@ -29,6 +26,30 @@ public class User implements Serializable {
         role = Role.STUDENT;     // set the first role as default
     }
 
+
+
+    @Pattern(regexp = "[A-Za-z0-9]{2,20}", message = "Skriv in ditt användarnamn mellan 2 och 20 tecken långt, innehållande bokstäver och siffror")
+    private String username;
+
+    @Size(min = 8, message = "Ditt pasword måste innehålla minst 8 tecken")
+	private String password;
+
+    @Size(min = 1, max = 30, message = "Skriv in ditt Förnamn mellan 1 och 30 tecken långt.")
+    private String firstName;
+
+    @Size(min = 1, max = 30, message = "Skriv in ditt Efternamn mellan 1 och 30 tecken långt.")
+    private String lastName;
+
+    @ValidEmailAddress
+    private String emailAddress;
+
+    private PhoneNumber phoneNumber;
+
+    @Past(message = "Ditt födelsedatum måste vara i dåtid .")
+    private Date birthDate;
+	
+
+	
     public String getUsername() {
         return username;
     }
@@ -45,6 +66,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
+
     public String getFirstName() {
         return firstName;
     }
@@ -58,8 +80,10 @@ public class User implements Serializable {
     }
 
     public void setLastName(String lastName) {
+
         this.lastName = lastName;
     }
+
 
     public String getEmailAddress() {
         return emailAddress;
@@ -69,11 +93,11 @@ public class User implements Serializable {
         this.emailAddress = emailAddress;
     }
 
-    public String getPhoneNumber() {
+    public PhoneNumber getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(PhoneNumber phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -84,8 +108,7 @@ public class User implements Serializable {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
-
-    public Role getRole() {
+  public Role getRole() {
         return role;
     }
 
@@ -97,6 +120,6 @@ public class User implements Serializable {
         return rolesList;
     }
 
-
 }
+
 
