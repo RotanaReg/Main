@@ -18,7 +18,7 @@ public class User implements Serializable {
     private Role role;
     private List<Role> rolesList;
 
-    public User(){
+    public User() {
         rolesList = new ArrayList();
         rolesList.add(Role.STUDENT);
         rolesList.add(Role.TEACHER);
@@ -26,13 +26,11 @@ public class User implements Serializable {
         role = Role.STUDENT;     // set the first role as default
     }
 
-
-
     @Pattern(regexp = "[A-Za-z0-9]{2,20}", message = "Skriv in ditt användarnamn mellan 2 och 20 tecken långt, innehållande bokstäver och siffror")
     private String username;
 
     @Size(min = 8, message = "Ditt pasword måste innehålla minst 8 tecken")
-	private String password;
+    private String password;
 
     @Size(min = 1, max = 30, message = "Skriv in ditt Förnamn mellan 1 och 30 tecken långt.")
     private String firstName;
@@ -47,9 +45,8 @@ public class User implements Serializable {
 
     @Past(message = "Ditt födelsedatum måste vara i dåtid .")
     private Date birthDate;
-	
 
-	
+
     public String getUsername() {
         return username;
     }
@@ -108,7 +105,8 @@ public class User implements Serializable {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
-  public Role getRole() {
+
+    public Role getRole() {
         return role;
     }
 

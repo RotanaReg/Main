@@ -13,12 +13,11 @@ public class SignIn {
     @Inject
     private UserManager userManager;
 
-  @Pattern(regexp = "[A-Za-z0-9]{2,20}", message = "Användarnamnet skall innehålla bara bokstäver och siffror samt vara långt mellan 2 och 20 tecken.")
+    @Pattern(regexp = "[A-Za-z0-9]{2,20}", message = "Användarnamnet skall innehålla bara bokstäver och siffror samt vara långt mellan 2 och 20 tecken.")
     private String username;
 
     @Size(min = 8, message = "Ditt password måste innehålla minst 8 tecken.")
     private String password;
-
 
     public String getUsername() {
         return username;
