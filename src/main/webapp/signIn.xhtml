@@ -1,51 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<ui:composition template="/templates/template_page.xhtml">
-    <ui:param name="pageTitle" value="Sign In"/>
-	
+<ui:composition template="/templates/page_template.xhtml">
+    <ui:param name="pageTitle" value="Logga in"/>
     <ui:define name="panel-top">
         <section>
-            <ui:fragment rendered="#{not userManager.signedIn}">
-                <h1>Logga in</h1>
-                <p>Skriv ditt användarnamn</p>
-            </ui:fragment>
 
-            <ui:fragment rendered="#{userManager.signedIn}">
-                <h:form>
-                    <h1>Välkommen, #{userManager.currentUser.firstName}!</h1>
-                    <p>Du är redan inloggad.
-                        Vill du<h:commandLink action="#{userManager.signOut}">logga ut</h:commandLink>?</p>
-                </h:form>
-            </ui:fragment>
+            <h:outputText value="Välkommen till Rotana Reg skolan!"/>
+            <p> </p>
+            <h:outputText value="Vänligen logga in"/>
+
         </section>
     </ui:define>
 
-	
     <ui:define name="panel-main">
         <ui:fragment rendered="#{not userManager.signedIn}">
-            <section>
-                <h:messages styleClass="validation-messages"/>
-                <h:form>
-                    <h:panelGrid columns="2" styleClass="form-grid" columnClasses="form-column-label,form-column-input">
-                        <h:outputLabel for="username">Användarnamn</h:outputLabel>
-						<h:inputText id="username" value="#{signIn.username}" size="20"/>
-                                   
-                   
+        <section>
+            <h:form>
+                <h:panelGrid columns="2" styleClass="form-grid" columnClasses="form-column-label,form-column-input">
 
-                        <h:outputLabel for="password">Password</h:outputLabel>
-                         <h:inputSecret id="password" value="#{signIn.password}" size="20"/>
+                    <h:outputLabel for="username">Användarnamn</h:outputLabel>
+                    <h:inputText id="username" value="#{signIn.username}" size="20"/>
 
-                        <h:outputText value=""/>
-                        <h:commandButton value="Submit" action="#{signIn.submit}"/>  <!--anroppar usermanager-->
-                    </h:panelGrid>
-                </h:form>
-            </section>
+                    <h:outputLabel for="password">Password</h:outputLabel>
+                    <h:inputSecret id="password" value="#{signIn.password}" size="20"/>
+
+                    <h:outputText value=""/>
+                    <h:commandButton value="Submit" action="#{signIn.submit}"/>  <!--anroppar usermanager-->
+                </h:panelGrid>
+            </h:form>
+        </section>
         </ui:fragment>
     </ui:define>
 

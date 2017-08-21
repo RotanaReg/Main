@@ -1,0 +1,62 @@
+body {
+    background-color: rgba(118, 203, 224, 0.1);
+}
+
+a:link, a:visited {
+    color: #8d52a0;
+}
+
+a:hover, a:active {
+    color: #76cbe0;
+}
+
+input, select {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #396280;
+    padding: 4px;
+}
+option {
+    background-color: white;
+    color: black;
+}
+input[readonly] {
+    color: #808080;
+}
+
+input[type="submit"], input[type="button"] {
+    border-radius: 4px;
+    padding: 4px 12px;
+}
+
+body > header {
+    background-color: #2badca;
+    color: white;
+}
+
+body > section, body > form > section {
+    background-color: rgba(114, 207, 179, 0.38);
+    color: black;
+}
+
+body > footer {
+    background-color: #2badca;
+    color: #e5e5e5;
+}
+.student-header {
+    background-color: #2a17f1;
+    color: white;
+}
+
+.student-row-odd {
+    background-color: #e0e0e0;
+}
+
+.student-row-even {
+    background-color: #f0f0f0;
+}
+
+.student-footer {
+    background-color: #2a17f1;
+    color: white;
+}
