@@ -34,7 +34,7 @@ public class Teacher {
     private Date dateOfBirth;
 
     @Column (name = "phone_number", length = 100)
-    private Integer phoneNumber;
+    private String phoneNumber;
 
 
    // Constructors,
@@ -42,7 +42,7 @@ public class Teacher {
     public Teacher() {
     }
 
-    public Teacher(String firstName, String lastName, String eMail, Date dateOfBirth, Integer phoneNumber)
+    public Teacher(String firstName, String lastName, String eMail, Date dateOfBirth, String phoneNumber)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -89,11 +89,11 @@ public class Teacher {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     //hashcode, equals & toString

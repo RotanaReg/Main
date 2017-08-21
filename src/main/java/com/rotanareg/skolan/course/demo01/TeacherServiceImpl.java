@@ -22,7 +22,7 @@ public class TeacherServiceImpl {
         EntityTransaction tx = em.getTransaction();
 
         TeacherService service = new TeacherService(em);
-        Teacher teacher = new Teacher("Pernila", "Johansson", "pernila.johansson@gmail.com", date("11/03/1973"),"072123465" );
+        Teacher teacher = new Teacher("Pernila", "Johansson", "pernila.johansson@gmail.com", date("1973-11-25"),"072123465" );
 
         // Creates and persists a teacher
         tx.begin();

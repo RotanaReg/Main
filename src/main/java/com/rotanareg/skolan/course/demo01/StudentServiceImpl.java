@@ -23,7 +23,7 @@ import static com.rotanareg.skolan.course.DateB.date;
             EntityTransaction tx = em.getTransaction();
 
             StudentService service = new StudentService(em);
-            Student student = new Student("John", "Person", "john.person@gmail.com", date("01/11/1993"),"073823795" );
+            Student student = new Student("John", "Person", "john.person@gmail.com", date("1993-02-12"),"073823795" );
 
             // Creates and persists a student
             tx.begin();
