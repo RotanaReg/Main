@@ -7,15 +7,19 @@
 
 <ui:composition template="/templates/page_template.xhtml">
     <ui:param name="pageTitle" value="Admin"/>
-    <ui:define name = "panel-top">
+    <ui:define name="panel-top">
         <section>
-            <h:commandButton value="Registrera nya kurser" action="#{course.addCourse()}"/> <!--lägg in inom parantes parameter-->
-            <h:commandButton value="Registrera nya användare" action="#{user.addUser()}"/> <!--lägg in inom parantes parameter-->
+            <h:commandButton value="Registrera nya kurser"
+                             action="#{course.addCourse()}"/> <!--lägg in inom parantes parameter-->
+            <h:commandButton value="Registrera nya användare"
+                             action="#{user.addUser()}"/> <!--lägg in inom parantes parameter-->
         </section>
     </ui:define>
 
     <ui:define name="panel-main">
         <section>
+
+            <h1>Admin</h1>
 
         </section>
     </ui:define>
