@@ -4,78 +4,79 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-<ui:composition template="/templates/page_template.xhtml">
-    <ui:param name="pageTitle" value="Student"/>
-    <ui:define name = "panel-top">
+    <ui:composition template="/templates/page_template.xhtml">
+        <ui:param name="pageTitle" value="Student"/>
+        <ui:define name="panel-top">
 
+            <h1>Student</h1>
 
-    <section>
-            <h:form>
-            <h:dataTable value="#{student.lines}" var="line"
-                         styleClass="student-table"
-                         headerClass="student-header"
-                         rowClasses="student-row-odd,student-row-even"
-                         columnClasses="student-col-courseCode,student-col-courseName,student-col-teacherName"
-                         footerClass="student-footer">
-                <h:column>
-                    <f:facet name="header">Kurs kod</f:facet>
-                    <h:outputLink value="course_detail.xhtml">
-                        <f:param name="courseId" value="#{line.course.id}"/>
-                        #{line.courseCode.name}
-                    </h:outputLink>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Kurs namn</f:facet>
-                    #{line.courseName.name}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Ansvarig lärare</f:facet>
-                    #{line.teacherName}
+            <section>
+                <h:form>
+                    <h:dataTable value="#{student.lines}" var="line"
+                                 styleClass="student-table"
+                                 headerClass="student-header"
+                                 rowClasses="student-row-odd,student-row-even"
+                                 columnClasses="student-col-courseCode,student-col-courseName,student-col-teacherName"
+                                 footerClass="student-footer">
+                        <h:column>
+                            <f:facet name="header">Kurs kod</f:facet>
+                            <h:outputLink value="course_detail.xhtml">
+                                <f:param name="courseId" value="#{line.course.id}"/>
+                                #{line.courseCode.name}
+                            </h:outputLink>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Kurs namn</f:facet>
+                            #{line.courseName.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Ansvarig lärare</f:facet>
+                            #{line.teacherName}
 
-                </h:column>
-                <f:facet name="footer">
-                    <h:commandButton value="Avregistrera" action="#{course.removeCourse(line.course)}"/>
-                </f:facet>
+                        </h:column>
+                        <f:facet name="footer">
+                            <h:commandButton value="Avregistrera" action="#{course.removeCourse(line.course)}"/>
+                        </f:facet>
 
-            </h:dataTable>
-        </h:form>
-        </section>
-    </ui:define>
+                    </h:dataTable>
+                </h:form>
+            </section>
+        </ui:define>
 
-    <ui:define name="panel-main">
-        <section>
-            <h:form>
-                <h:dataTable value="#{student.lines}" var="line"
-                             styleClass="student-table"
-                             headerClass="student-header"
-                             rowClasses="student-row-odd,student-row-even"
-                             columnClasses="student-col-courseCode,student-col-courseName,student-col-teacherName"
-                             footerClass="student-footer">
-                    <h:column>
-                        <f:facet name="header">Kurs kod</f:facet>
-                      <h:outputLink value="course_detail.xhtml">
-                            <f:param name="courseId" value="#{line.course.id}"/>
-                            #{line.courseCode.name}
-                        </h:outputLink>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Kurs namn</f:facet>
-                        #{line.courseName.name}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Ansvarig lärare</f:facet>
-                        #{line.teacherName}
+        <ui:define name="panel-main">
+            <section>
+                <h:form>
+                    <h:dataTable value="#{student.lines}" var="line"
+                                 styleClass="student-table"
+                                 headerClass="student-header"
+                                 rowClasses="student-row-odd,student-row-even"
+                                 columnClasses="student-col-courseCode,student-col-courseName,student-col-teacherName"
+                                 footerClass="student-footer">
+                        <h:column>
+                            <f:facet name="header">Kurs kod</f:facet>
+                            <h:outputLink value="course_detail.xhtml">
+                                <f:param name="courseId" value="#{line.course.id}"/>
+                                #{line.courseCode.name}
+                            </h:outputLink>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Kurs namn</f:facet>
+                            #{line.courseName.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Ansvarig lärare</f:facet>
+                            #{line.teacherName}
 
-                    </h:column>
-                    <f:facet name="footer">
-                        <h:commandButton value="Sök" action="course_detail"/>
-                        <h:commandButton value="Registrera" action="#{course.addCourse(line.course)}"/>
-                    </f:facet>
+                        </h:column>
+                        <f:facet name="footer">
+                            <h:commandButton value="Sök" action="course_detail"/>
+                            <h:commandButton value="Registrera" action="#{course.addCourse(line.course)}"/>
+                        </f:facet>
 
-                </h:dataTable>
-            </h:form>
-        </section>
-    </ui:define>
-</ui:composition>
+                    </h:dataTable>
+                </h:form>
+            </section>
+        </ui:define>
+    </ui:composition>
 </f:view>
 </html>
