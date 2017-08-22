@@ -7,7 +7,7 @@
 
 <ui:composition template="templates/page_template.xhtml">
     <f:metadata>
-        <f:viewParam name ="courseId" value="#{courseDetail.courseId}"/>
+        <f:viewParam name="courseId" value="#{courseDetail.courseId}"/>
         <f:viewAction action="#{courseDetail.onload}"/>
     </f:metadata>
 
@@ -16,7 +16,7 @@
         <section class="course_detail">
             <h:form>
                 <h1>#{courseDetail.course.name}</h1>
-                <p> </p>
+                <p></p>
             </h:form>
         </section>
     </ui:define>
