@@ -17,8 +17,15 @@
 
     <ui:define name="panel-main">
         <section>
+            <h:dataTable value="#{coursesBean.courses.courses}" var="myCourse">
+              <h:column>
+                <h1>#{myCourse.name}</h1>
+                #{myCourse.description}
+              </h:column>
+            </h:dataTable>
             <h1>Elev</h1>
             <h2>Mest lästa kurser</h2>
+
             <h:form>
                 <ui:repeat value="#{mostStudiedCourses.courses}" var="course">
                     <ui:param name="course" value="#{course}"/>
