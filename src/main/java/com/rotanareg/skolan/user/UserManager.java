@@ -35,7 +35,7 @@ public class UserManager implements Serializable {
         currentUser = user;
         System.out.println("signIn(..) >>>>>" + user.getRole() + "<<<");
 
-        switch (user.getRole()){
+        switch (user.getRole()) {
             case STUDENT:
                 //System.out.println("**********STU");
                 return "student";   // xhtml-page to redirect to when signed in
