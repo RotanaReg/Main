@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="templates/template_page.xhtml">
+    <ui:param name="pageTitle" value="Admin sidan"/>
 
 
-<ui:composition template="/templates/page_template.xhtml">
-    <ui:param name="pageTitle" value="Admin"/>
     <ui:define name="panel-top">
         <section>
-            <h:commandButton value="Registrera nya kurser"
-                             action="#{course.addCourse()}"/> <!--lägg in inom parantes parameter-->
-            <h:commandButton value="Registrera nya användare"
-                             action="#{user.addUser()}"/> <!--lägg in inom parantes parameter-->
+            <h:outputLink value="index.xhtml">Logga ut</h:outputLink>
         </section>
     </ui:define>
+
 
     <ui:define name="panel-main">
         <section>
-
             <h1>Admin</h1>
 
+            <h:outputLink value="user_detail.xhtml">Registrera nya användare</h:outputLink>
         </section>
     </ui:define>
-
 </ui:composition>
+
+
 </html>

@@ -7,18 +7,18 @@ import java.io.Serializable;
 
 @Named
 @ViewScoped
-public class CourseDetails implements Serializable{
-	 private static final long serialVersionUID = 1L;
-	 
-	  @Inject
-	   private CourseService courseService;
-	   
-	    private long courseId;
-		
-		private Course course;
-		
-	public long getCourseId() {
-			return courseId;
+public class CourseDetails implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Inject
+    private CourseService courseService;
+
+    private long courseId;
+
+    private Course course;
+
+    public long getCourseId() {
+        return courseId;
     }
 
     public void setCourseId(long courseId) {

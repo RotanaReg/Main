@@ -5,8 +5,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @ApplicationScoped // skall stored i databas
-public class UserServiceImpl implements UserService {
-
+public class UserServiceImpl implements com.rotanareg.skolan.user.UserService {
 
     private final Map<String, User> users = new ConcurrentHashMap<>();
 

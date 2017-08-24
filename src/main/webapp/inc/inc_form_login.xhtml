@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite">
+    <h:form>
+        <p id="login_form">
+            <label class="text_grey">Login:</label><br/>
+
+            <br/>
+
+            <h:outputLabel>Användarnamn123:</h:outputLabel><br/>
+            <h:inputText id="username" value="#{contactInformation.foreName}"/><br/>
+
+            <br/>
+
+            <h:outputLabel>Lösenord:</h:outputLabel><br/>
+            <h:inputText id="password" value="#{contactInformation.city}"/><br/>
+
+            <br/>
+
+            <h:commandButton action="#{contactInformation.save}" value="Login"/>
+        </p>
+    </h:form>
+
+</ui:composition>
+

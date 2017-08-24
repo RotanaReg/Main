@@ -9,18 +9,18 @@ import java.util.List;
 @Named
 @RequestScoped
 public class MostStudiedCourses {
-	
+
     @Inject
-	 private com.rotanareg.skolan.course.CourseService courseService;
-	 
-	 private List<Course> courses;
-	  
-	 @PostConstruct
+    private com.rotanareg.skolan.course.CourseService courseService;
+
+    private List<Course> courses;
+
+    @PostConstruct
     public void initialize() {
-	courses = courseService.getMostStudiedCourses ();
-	}
-	
+        courses = courseService.getMostStudiedCourses();
+    }
+
     public List<Course> getCourses() {
-	return courses;
-    }		 
+        return courses;
+    }
 }

@@ -33,25 +33,34 @@ public class UserManager implements Serializable {
             return "signIn";
         }
         currentUser = user;
- 
-        switch (user.getRole()) {
+        System.out.println("signIn(..) >>>>>" + user.getRole() + "<<<");
+
+        switch (user.getRole()){
             case STUDENT:
+                //System.out.println("**********STU");
                 return "student";   // xhtml-page to redirect to when signed in
             case TEACHER:
+                //System.out.println("**********TEA");
                 return "teacher";   // xhtml-page to redirect to when signed in
             case ADMIN:
+                //System.out.println("**********ADM");
                 return "admin";     // xhtml-page to redirect to when signed in
         }
         return "";                  // should never happen, but redirects to the default xhtml-page
     }
 
-    public void signOut() {
+    public String signOut() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+
+        //return "index?faces-redirect=true";
+        return "";
     }
 
     public String save(User user) {
         userService.saveUser(user);
         currentUser = user;
+
+        //System.out.println("save(..) >>>>>"+user.getRole()+"<<<");
 
         return "index";
     }

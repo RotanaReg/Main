@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-<ui:composition template="/templates/page_template.xhtml">
-
+<ui:composition template="templates/template_page.xhtml">
     <f:metadata>
         <f:viewAction action="#{userDetail.onload}"/>
     </f:metadata>
-
     <ui:param name="pageTitle" value="Användar detaljer"/>
 
     <ui:define name="panel-top">
@@ -19,48 +17,46 @@
             <h:outputLink value="admin.xhtml">Tillbaka</h:outputLink>
         </section>
     </ui:define>
-
     <ui:define name="panel-main">
-    <section>
-        <h:form>
-            <h:panelGrid columns="2" styleClass="form-grid" columnClasses="form-column-label,form-column-input">
-                <h:outputLabel for="username">Användarnamn</h:outputLabel>
-                <h:inputText id="username" value="#{userDetail.user.username}" size="20"
-                             readonly="#{userManager.signedIn}"/>
+        <section>
+            <h:form>
+                <h:panelGrid columns="2" styleClass="form-grid" columnClasses="form-column-label,form-column-input">
+                    <h:outputLabel for="username">Användarnamn</h:outputLabel>
+                    <h:inputText id="username" value="#{userDetail.user.username}" size="20"
+                                 readonly="#{userManager.signedIn}"/>
 
-                <h:outputLabel for="password">Password</h:outputLabel>
-                <h:inputSecret id="password" value="#{userDetail.user.password}" size="20"/>
+                    <h:outputLabel for="password">Password</h:outputLabel>
+                    <h:inputSecret id="password" value="#{userDetail.user.password}" size="20"/>
 
-                <h:outputLabel for="firstName">Förnamn</h:outputLabel>
-                <h:inputText id="firstName" value="#{userDetail.user.firstName}" size="30"/>
+                    <h:outputLabel for="firstName">Förnamn</h:outputLabel>
+                    <h:inputText id="firstName" value="#{userDetail.user.firstName}" size="30"/>
 
-                <h:outputLabel for="lastName">Efternamn</h:outputLabel>
-                <h:inputText id="lastName" value="#{userDetail.user.lastName}" size="30"/>
+                    <h:outputLabel for="lastName">Efternamn</h:outputLabel>
+                    <h:inputText id="lastName" value="#{userDetail.user.lastName}" size="30"/>
 
-                <h:outputLabel for="emailAddress">E-mail address</h:outputLabel>
-                <h:inputText id="emailAddress" value="#{userDetail.user.emailAddress}" size="20"/>
+                    <h:outputLabel for="emailAddress">E-mail address</h:outputLabel>
+                    <h:inputText id="emailAddress" value="#{userDetail.user.emailAddress}" size="20"/>
 
-                <h:outputLabel for="phoneNumber">Telefon nummer</h:outputLabel>
-                <h:inputText id="phoneNumber" value="#{userDetail.user.phoneNumber}" size="20">
-                    <f:validator validatorId="com.rotanareg.skolan.user.PhoneNumber"/>
-                </h:inputText>
-                <h:outputLabel for="birthDate">Födelsedatum</h:outputLabel>
-                <h:inputText id="birthDate" p:type="date" value="#{userDetail.user.birthDate}">
-                    <f:convertDateTime pattern="yyyy-MM-dd"/>
-                </h:inputText>
+                    <h:outputLabel for="phoneNumber">Telefon nummer</h:outputLabel>
+                    <h:inputText id="phoneNumber" value="#{userDetail.user.phoneNumber}" size="20"/>
 
-                <h:outputLabel for="role" value="Roll:"/>
-                <h:selectOneRadio rendered="true" id="role" value="#{userDetail.user.role}" label="role"
-                                  filter="true" panelStyle="width:250px">
-                    <f:selectItems value="#{userDetail.user.rolesList}"/>
-                </h:selectOneRadio>
+                    <h:outputLabel for="birthDate">Födelsedatum</h:outputLabel>
+                    <h:inputText id="birthDate" p:type="date" value="#{userDetail.user.birthDate}">
+                        <f:convertDateTime pattern="yyyy-MM-dd"/>
+                    </h:inputText>
 
-                <h:outputText value=""/>
-                <h:commandButton value="Submit" action="#{userDetail.submit}"/>
-            </h:panelGrid>
-        </h:form>
-    </section>
+                    <h:outputLabel for="role" value="Roll:"/>
+                    <h:selectOneRadio rendered="true" id="role" value="#{userDetail.user.role}" label="role"
+                                      filter="true" panelStyle="width:250px">
+                        <f:selectItems value="#{userDetail.user.rolesList}"/>
+                    </h:selectOneRadio>
+
+                    <h:outputText value=""/>
+                    <h:commandButton value="Submit" action="#{userDetail.submit}"/>
+                </h:panelGrid>
+
+            </h:form>
+        </section>
     </ui:define>
-
 </ui:composition>
 </html>
