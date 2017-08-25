@@ -7,7 +7,7 @@
 
     <persistence-unit name="nameDB" transaction-type="JTA"> <!--same name as in emf definition-->
 
-        <jta-data-source>jdbc/person</jta-data-source> <!--This resource has to be added to GlassFish-->
+        <jta-data-source>jdbc/school</jta-data-source> <!--This resource has to be added to GlassFish-->
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
         <properties>
