@@ -15,6 +15,6 @@ public interface UserService {
     void updateUser(User user);
     void removeUser(Long id);
     User getUser(Long id);
-    List<User> getUser();
+    List<User> getUsers();
     public List<User> getUserContaining(String filter);
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<ui:composition template="templates/template_page.xhtml">
+    <ui:composition template="templates/template_page.xhtml">
     <ui:param name="pageTitle" value="Student sidan"/>
 
     <ui:define name="panel-top">
@@ -16,27 +16,21 @@
     </ui:define>
 
     <ui:define name="panel-main">
-        <section>
-            <h:dataTable value="#{coursesBean.courses.courses}" var="myCourse">
-              <h:column>
+        <h:dataTable value="#{userBean.users.users}" var="myUser">
+        <h:column>
+        #{myUser.name} #{myUser.role}
+        </h:column>
+        </h:dataTable>
+    <section>
+        <h:dataTable value="#{coursesBean.courses.courses}" var="myCourse">
+            <h:column>
                 <h1>#{myCourse.name}</h1>
                 #{myCourse.description}
-              </h:column>
-            </h:dataTable>
-            <h1>Elev</h1>
-            <h2>Mest lästa kurser</h2>
-
-            <h:form>
-                <ui:repeat value="#{mostStudiedCourses.courses}" var="course">
-                    <ui:param name="course" value="#{course}"/>
-                    <ui:define name="course-description">
-
-                    </ui:define>
-                </ui:repeat>
-            </h:form>
-        </section>
+            </h:column>
+        </h:dataTable>
+    </section>
     </ui:define>
-</ui:composition>
+    </ui:composition>
 
 </html>
 

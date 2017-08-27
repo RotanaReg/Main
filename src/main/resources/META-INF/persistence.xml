@@ -5,7 +5,7 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
                  http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
-    <persistence-unit name="nameDB" transaction-type="JTA"> <!--same name as in emf definition-->
+    <persistence-unit name="school" transaction-type="JTA"> <!--same name as in emf definition-->
 
         <jta-data-source>jdbc/school</jta-data-source> <!--This resource has to be added to GlassFish-->
         <exclude-unlisted-classes>false</exclude-unlisted-classes>

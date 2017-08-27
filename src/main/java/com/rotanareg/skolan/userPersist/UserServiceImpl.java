@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService{
         return ud;
     }
     @Override
-    public List<User> getUser() {
+    public List<User> getUsers() {
        List<UserEntity> userEntityList = em.createNamedQuery("selectAllUsers").getResultList();
        if (userEntityList.isEmpty()){
            UserEntity a = new UserEntity("Nils","Gerstner",Role.STUDENT,"1234");
