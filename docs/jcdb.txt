@@ -1,14 +1,16 @@
-För att skapa connection poolen och resursen jdbc/school, 
-kör följande kommando i asadmin 
-(OBS: ni måste eventuellt anpassa lösenordet...)
+Fï¿½r att skapa connection poolen och resursen jdbc/school, 
+kï¿½r fï¿½ljande kommando i asadmin 
+(OBS: ni mï¿½ste eventuellt anpassa lï¿½senordet...)
 
 -------------------------------------------------------
 
 
-
+(Om DB inte igÃ¥ng, skriv: "start-domain" kommando tolken)
 
 create-jdbc-connection-pool --datasourceclassname org.postgresql.ds.PGSimpleDataSource --restype javax.sql.XADataSource --property portNumber=5432:password=LexiconJava:user=postgres:serverName=localhost:databaseName=school jpa_school_postgresql_pool
 
 
 
 create-jdbc-resource --connectionpoolid jpa_school_postgresql_pool jdbc/school
+
+stop-domain
