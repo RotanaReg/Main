@@ -18,13 +18,16 @@ public class CourseUserAssociation {
     private long courseId;
     @Id
     private long personId;
+
     @Column(name="IS_TEACHER")
     private boolean isTeacher;
+
     @ManyToOne
     @PrimaryKeyJoinColumn(name="COURSEID", referencedColumnName = "ID")
     private CourseEntity course;
     @ManyToOne
     @PrimaryKeyJoinColumn(name="PERSONID", referencedColumnName = "ID")
+
     private UserEntity person;
 
     public long getCourseId() {
@@ -68,37 +71,3 @@ public class CourseUserAssociation {
     }
 }
 
-
-
-
-//@Entity
-//@Table(name="PROJ_EMP")
-//@IdClass(ProjectAssociationId.class)
-//public class ProjectAssociation {
-//    @Id
-//    private long employeeId;
-//    @Id
-//    private long projectId;
-//    @Column(name="IS_PROJECT_LEAD")
-//    private boolean isProjectLead;
-//    @ManyToOne
-//    @PrimaryKeyJoinColumn(name="EMPLOYEEID", referencedColumnName="ID")
-//  /* if this JPA model doesn't create a table for the "PROJ_EMP" entity,
-//  *  please comment out the @PrimaryKeyJoinColumn, and use the ff:
-//  *  @JoinColumn(name = "employeeId", updatable = false, insertable = false)
-//  * or @JoinColumn(name = "employeeId", updatable = false, insertable = false, referencedColumnName = "id")
-//  */
-//    private Employee employee;
-//    @ManyToOne
-//    @PrimaryKeyJoinColumn(name="PROJECTID", referencedColumnName="ID")
-//  /* the same goes here:
-//  *  if this JPA model doesn't create a table for the "PROJ_EMP" entity,
-//  *  please comment out the @PrimaryKeyJoinColumn, and use the ff:
-//  *  @JoinColumn(name = "projectId", updatable = false, insertable = false)
-//  * or @JoinColumn(name = "projectId", updatable = false, insertable = false, referencedColumnName = "id")
-//  */
-//    private Project project;
-//  ...
-//}
-//
-//
