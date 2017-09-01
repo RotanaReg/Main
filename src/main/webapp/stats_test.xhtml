@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form id="form1">
+        <h:panelGrid columns="3">
+            <h:panelGrid columns="2" style="vertical-align: top">
+                <h:outputText value='Enter name'/>
+                <h:inputText value='#{attendanceBean.date}'/>
+                <h:outputText value='Enter code'/>
+                <h:inputText value='#{attendanceBean.hasAttended}'/>
+                <h:commandButton action="#{attendanceBean.addAttendance}" value="#{attendanceBean.submitButton}"/>
+                <h:inputHidden value="#{attendanceBean.id}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="1" style="vertical-align: top">
+                <h:outputText value="Unfilterd List"/>
+                <h:dataTable id="tbl1" value="#{attendanceBean.attendances}" var="aBean">
+                    <h:column >
+                        <f:facet name="header">Id</f:facet>
+                        <h:outputText id="id" value="#{aBean.id}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Datum</f:facet>
+                        <h:outputText value="#{aBean.date}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Närvaro</f:facet>
+                        <h:outputText value="#{aBean.hasAttended}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGrid>
+            <h:panelGrid columns="1" style="vertical-align:text-top">
+            </h:panelGrid>
+        </h:panelGrid>
+    </h:form>
+</f:view>
+</html>
