@@ -12,11 +12,11 @@ public class User {
     private Role role;
     private String passWord;
 
-    public User(String name, String lastName, Role role, String passWord){
+    public User(String name, String lastName, Role role){
         this.name = name;
         this.lastName = lastName;
         this.role = role;
-        this.passWord = passWord;
+        this.passWord = null;
     }
 
     public User(long id, String name, String lastName, Role role, String passWord){

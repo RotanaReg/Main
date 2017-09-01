@@ -1,5 +1,11 @@
 package com.rotanareg.skolan.domains;
 
+import com.rotanareg.skolan.AssociatedPersist.CourseUserAssociation;
+import com.rotanareg.skolan.userPersist.UserEntity;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Nils Gerstner on 8/20/17.
  */
@@ -9,6 +15,7 @@ public class Course {
     private String name;
     private String description;
     private String courseNr;
+    private List<CourseUserAssociation> persons;
 
     public Course(String name, String description, String courseNr){
         this.name = name;
@@ -53,6 +60,14 @@ public class Course {
 
     public void setCourseNr(String courseNr) {
         this.courseNr = courseNr;
+    }
+
+    public List<CourseUserAssociation> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(List<CourseUserAssociation> persons) {
+        this.persons = persons;
     }
 
     @Override

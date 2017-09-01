@@ -1,13 +1,13 @@
 package com.rotanareg.skolan.coursePersist;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import com.rotanareg.skolan.AssociatedPersist.CourseUserAssociation;
+import com.rotanareg.skolan.Role;
+import com.rotanareg.skolan.userPersist.UserEntity;
+
+import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -29,6 +29,9 @@ public class CourseEntity {
     @Column(length = 10000)
     private String description;
     private String courseNr;
+
+    @OneToMany(mappedBy="course")
+    private List<CourseUserAssociation> persons;
 
     public CourseEntity() {
     }
@@ -70,4 +73,38 @@ public class CourseEntity {
     public void setCourseNr(String courseNr) {
         this.courseNr = courseNr;
     }
+
+    public List<CourseUserAssociation> getPersons() {
+        return persons;
+    }
+    public void addPerson (UserEntity person, boolean isTeacher) {
+        CourseUserAssociation courseUserAssociation = new CourseUserAssociation();
+        if (person.getRole() == Role.ADMIN) {
+            System.out.println("Nor TEACHER or STUDENT; not added!");
+        } else {
+            if (isTeacher && person.getRole() == Role.TEACHER)
+                courseUserAssociation.setTeacher(true);
+            else if (!isTeacher && person.getRole() != Role.STUDENT)
+                courseUserAssociation.setTeacher(false);
+            courseUserAssociation.setPerson(person);
+            courseUserAssociation.setCourse(this);
+            courseUserAssociation.setPersonId(person.getId());
+            courseUserAssociation.setCourseId(this.getId());
+            if (this.persons == null)
+                this.persons = new ArrayList<>();
+            this.persons.add(courseUserAssociation);
+        }
+    }
+//    public void addPerson (UserEntity person, boolean isTeacher){
+//        CourseUserAssociation courseUserAssociation = new CourseUserAssociation();
+//        courseUserAssociation.setPerson(person);
+//        courseUserAssociation.setCourse(this);
+//        courseUserAssociation.setPersonId(person.getId());
+//        courseUserAssociation.setCourseId(this.getId());
+//        courseUserAssociation.setTeacher(isTeacher);
+//        if(this.persons == null)
+//            this.persons = new ArrayList<>();
+//        this.persons.add(courseUserAssociation);
+//        person.getCourses().add(courseUserAssociation);
+//    }
 }

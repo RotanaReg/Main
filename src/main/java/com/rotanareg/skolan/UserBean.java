@@ -22,7 +22,7 @@ public class UserBean {
 
     public String addUser(){
         if (getId()==null)
-            userService.addUser(new User(name,lastName,role,passWord));
+            userService.addUser(new User(name,lastName,role));
         else
             userService.addUser(new User(getId(),getName(),getLastName(),getRole(),getPassWord()));
 
