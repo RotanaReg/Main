@@ -102,22 +102,4 @@ public class UserEntity {
             this.courses.add(courseUserAssociation);
         }
     }
-
-
-//    public List<CourseUserAssociation> getPersons() {
-//        return persons;
-//    }
-//
-//    public void addPerson (UserEntity person, boolean isTeacher){
-//        CourseUserAssociation courseUserAssociation = new CourseUserAssociation();
-//        courseUserAssociation.setPerson(person);
-//        courseUserAssociation.setCourse(this);
-//        courseUserAssociation.setPersonId(person.getId());
-//        courseUserAssociation.setCourseId(this.getId());
-//        courseUserAssociation.setTeacher(isTeacher);
-//        if(this.persons == null)
-//            this.persons = new ArrayList<>();
-//        this.persons.add(courseUserAssociation);
-//        person.getCourses().add(courseUserAssociation);
-//    }
 }
