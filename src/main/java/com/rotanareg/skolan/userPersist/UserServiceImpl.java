@@ -9,9 +9,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by Solidbeans on 2017-03-20.
- */
+
 
 @Stateless
 public class UserServiceImpl implements UserService{

@@ -8,9 +8,7 @@ import com.rotanareg.skolan.coursePersist.CourseEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Solidbeans on 2017-03-20.
- */
+
 @Entity
 @Table(name = "Person")
 @NamedQueries({

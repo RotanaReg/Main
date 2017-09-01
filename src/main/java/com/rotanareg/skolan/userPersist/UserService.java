@@ -5,9 +5,7 @@ import com.rotanareg.skolan.domains.User;
 import javax.ejb.Local;
 import java.util.List;
 
-/**
- * Created by Solidbeans on 2017-03-20.
- */
+
 @Local
 public interface UserService {
 
