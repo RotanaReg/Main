@@ -4,6 +4,8 @@ Inlämning
 
 Projekt inlämning senast måndag 11 sep.
 
+Helst validation bara i ett par fält, för att snabba på redovisningen.
+
 Katalogstruktur:
 - src/
 - pom.xml
