@@ -43,3 +43,20 @@ body > footer {
     background-color: #2badca;
     color: #e5e5e5;
 }
+.student-header {
+    background-color: #2a17f1;
+    color: white;
+}
+
+.student-row-odd {
+    background-color: #e0e0e0;
+}
+
+.student-row-even {
+    background-color: #f0f0f0;
+}
+
+.student-footer {
+    background-color: #2a17f1;
+    color: white;
+}
