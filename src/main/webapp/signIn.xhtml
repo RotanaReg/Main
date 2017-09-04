@@ -10,19 +10,17 @@
     <ui:param name="pageTitle" value="Sign In"/>
     <ui:define name="panel-top">
         <section>
-            <!--<ui:fragment rendered="#{not userManager.signedIn}">-->
             <ui:fragment rendered="#{not signInBean.loggedIn}">
 
             <h1>Logga in</h1>
                 <p>Skriv ditt användarnamn</p>
             </ui:fragment>
 
-            <!--<ui:fragment rendered="#{userManager.signedIn}">-->
             <ui:fragment rendered="#{signInBean.loggedIn}">
                 <h:form>
                     <h1>Välkommen, #{signInBean.userName}!</h1>
                     <p>Du är redan inloggad.
-                        Vill du<h:commandLink action="#{signInBean.setLoggedIn(false)}">logga ut</h:commandLink>?</p>
+                        Vill du<h:commandLink action="#{signInBean.logOut()}">logga ut</h:commandLink>?</p>
                 </h:form>
             </ui:fragment>
         </section>

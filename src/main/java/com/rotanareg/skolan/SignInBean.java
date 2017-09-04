@@ -17,34 +17,34 @@ import java.util.List;
 @ManagedBean
 @SessionScoped
 public class SignInBean {
-    private Long user;
+
     private String userName;
     private String userPassword;
-    private boolean loggedIn;
-    private User currentUser;
+    private User currentUser = null;
     @Inject
     private UserService userService;
 
     public SignInBean() {}
-    public SignInBean(boolean loggedIn) {
-        this.loggedIn = loggedIn;
-    }
 
-    public boolean logIn(){
+    public String logIn(){
         List<User> user = userService.getUserContaining(userName);
 
         if(!user.isEmpty()) {
             if (user.get(0).getPassWord().equals(userPassword)) {
                 User tempUser = user.get(0);
-                this.user = tempUser.getId();
-                System.out.println("USER " + tempUser.getLastName() + " is logged in? " + loggedIn);
+                System.out.println("USER " + tempUser.getLastName() + " is logged in? " + this.isLoggedIn());
                 this.currentUser = new User(tempUser.getId(),tempUser.getName(),tempUser.getLastName(),tempUser.getRole(),tempUser.getPassWord());
-                this.loggedIn = true;
-                return true;
+                return this.currentUser.getRole().toString();
             }
         }
         System.out.println(user.size() + " FALSE !@#$% Penis");
-        return false;
+        return "false";
+    }
+
+    public void logOut(){
+        userName = null;
+        userPassword = null;
+        currentUser = null;
     }
 
     public String getUserName() {
@@ -63,19 +63,10 @@ public class SignInBean {
         this.userPassword = userPassword;
     }
 
-    public Long getUser() {
-        return user;
-    }
-
-    public void setUser(Long user) {
-        this.user = user;
-    }
-
     public boolean isLoggedIn() {
-        return loggedIn;
-    }
-
-    public void setLoggedIn(boolean loggedIn) {
-        this.loggedIn = loggedIn;
+        if (currentUser != null)
+            return true;
+        else
+            return false;
     }
 }
