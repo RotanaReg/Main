@@ -19,13 +19,26 @@
 
     <ui:define name="panel-main">
         <section>
-            <h1>Statistik</h1>
+            <h1>Föra närvaro</h1>
 
             ---marko jobbar på statistik/närvaro-biten...---
 
             <br/><br/>
             <h:link styleClass="menuItem" value="stats_test.xhtml" outcome="stats_test"/>
             <br/><br/>
+
+            <ui:remove>TODO: only allow techers to see this content</ui:remove>
+
+            <h:panelGrid columns="1" style="vertical-align: top">
+                <h:outputText value='Course id:'/>
+                <h:inputText value='#{attendanceBean.date}'/>
+                <h:outputText value='User id:'/>
+                <h:inputText value='#{attendanceBean.hasAttended}'/>
+                <h:commandButton action="#{attendanceBean.addAttendance}" value="#{attendanceBean.submitButton}"/>
+                <h:inputHidden value="#{attendanceBean.id}"/>
+            </h:panelGrid>
+
+            <br/>
 
             <h:outputText value="Alla rader:"/>
             <h:dataTable id="tbl1" value="#{attendanceBean.attendances}" var="aBean">
