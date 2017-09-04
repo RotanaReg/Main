@@ -1,0 +1,11 @@
+
+Inlämning
+=========
+
+Projekt inlämning senast måndag 11 sep.
+
+Katalogstruktur:
+- src/
+- pom.xml
+- ReadMe.txt eller ReadMe.md
+
