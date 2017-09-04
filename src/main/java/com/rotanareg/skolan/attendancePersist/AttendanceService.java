@@ -32,4 +32,8 @@ public interface AttendanceService {
 /*
     public List<CourseDomain> getCoursesNameContain(String filter);
     */
+    String getCourseNr(Long id);
+
+    String getCourseName(Long id);
+
 }

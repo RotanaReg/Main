@@ -99,11 +99,12 @@ public class AttendanceBean {
         this.hasAttended = hasAttended;
     }
 
-    public AttendanceService getCourseService() {
-        return aService;
-    }
+    //public AttendanceService getCourseService() {
+    //    return aService;
+    //}
 
-    public void setCourseService(AttendanceService courseService) {
-        this.aService = courseService;
-    }
+    //public void setCourseService(AttendanceService courseService) {
+    //    this.aService = courseService;
+    //}
+
 }

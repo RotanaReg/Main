@@ -4,6 +4,8 @@
 
 package com.rotanareg.skolan.attendancePersist;
 
+import com.rotanareg.skolan.coursePersist.*;
+import com.rotanareg.skolan.userPersist.*;
 import com.rotanareg.skolan.domains.*;
 
 import javax.ejb.Stateless;
@@ -11,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,11 +74,20 @@ public class AttendanceServiceImpl implements AttendanceService {
         System.out.println("course Size " + courseRecords.size());
         */
 
-        List<AttendanceEntity> l = em.createNamedQuery("selectAll").getResultList();
+        List<AttendanceEntity> entityList = em.createNamedQuery("selectAll").getResultList();
+        List<AttendanceDomain> domainList = new ArrayList();
 
-        return l.stream().
+/*        return entityList.stream().
+                //map(a -> new AttendanceDomain(a.getId(), a.getDate(), a.isHasAttended())).
                 map(a -> new AttendanceDomain(a.getId(), a.getDate(), a.isHasAttended())).
                 collect(Collectors.toList());
+                */
+        for(AttendanceEntity e: entityList){
+            // TODO: completer below
+            // AttendanceDomain(Long id, CourseEntity eCourse, UserEntity eUser, Date date, boolean hasAttended):
+            domainList.add(new AttendanceDomain(e.getId(), e.getCourse(), e.getUser(), e.getDate(), e.isHasAttended()));
+        }
+        return domainList; 
     }
 /*
     @Override
@@ -89,4 +101,14 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     }
 */
+    public String getCourseNr(Long id) {
+        AttendanceEntity e = em.find(AttendanceEntity.class, id);
+        return e.getCourse().getCourseNr();
+    }
+
+    public String getCourseName(Long id) {
+        AttendanceEntity e = em.find(AttendanceEntity.class, id);
+        return e.getCourse().getName();
+    }
+
 }

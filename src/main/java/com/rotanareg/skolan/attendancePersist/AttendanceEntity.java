@@ -5,6 +5,9 @@
 
 package com.rotanareg.skolan.attendancePersist;
 
+import com.rotanareg.skolan.coursePersist.*;
+import com.rotanareg.skolan.userPersist.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 //import java.util.*;
@@ -31,14 +34,19 @@ public class AttendanceEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    //private long courseId;
+    //private long userId;
+
     //@NotNull
     //private Long courseId;
-/*    private CourseEntity course;
+//    @PrimaryKeyJoinColumn(name="COURSEID", referencedColumnName = "ID")
+    private CourseEntity course;
 
     //@NotNull
     //private Long userId;
+//    @PrimaryKeyJoinColumn(name="USERID", referencedColumnName = "ID")
     private UserEntity user;
-*/
+
     ////@Temporal(TemporalType.DATE)
     ////@DateFormat(format = "yyyy-MM-dd")
     //@NotNull
@@ -94,5 +102,21 @@ public class AttendanceEntity {
 
     public void setHasAttended(boolean hasAttended) {
         this.hasAttended = hasAttended;
+    }
+
+    public CourseEntity getCourse() {
+        return course;
+    }
+
+    public void setCourse(CourseEntity course) {
+        this.course = course;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 }
