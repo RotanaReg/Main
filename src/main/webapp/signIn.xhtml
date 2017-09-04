@@ -10,7 +10,7 @@
     <ui:param name="pageTitle" value="Sign In"/>
     <ui:define name="panel-top">
         <section>
-            <ui:fragment rendered="#{not signInBean.loggedIn}">
+            <ui:fragment rendered="#{not signInBean.isLoggedIn()}">
 
             <h1>Logga in</h1>
                 <p>Skriv ditt användarnamn</p>

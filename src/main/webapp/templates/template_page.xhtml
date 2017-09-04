@@ -13,6 +13,7 @@
     <title>RotanaReg Skolan - #{pageTitle}</title>
     <h:outputStylesheet library="skolan" name ="/theme/blueheven.css"/>
     <h:outputStylesheet library= "skolan" name="/css/style.css"/>
+
 </h:head>
 
 <h:body>
@@ -28,6 +29,8 @@
         <h:link styleClass="menuItem" value="Teacher" outcome="teacher"/>
         <span class="text_grey"> | </span>
         <h:link styleClass="menuItem" value="Stats" outcome="stats"/>
+        <h:link style="float: right; margin-right: 2rem" styleClass="menuItem"  rendered="#{not signInBean.isLoggedIn()}" value="Login" outcome="signIn"/>
+        <h:link style="float: right; margin-right: 2rem" styleClass="menuItem" rendered="#{signInBean.loggedIn}" value="Logout" outcome="index" action="#{signInBean.logOut()}"/>
     </nav>
 
     <ui:insert name = "panel-top">
