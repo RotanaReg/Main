@@ -39,13 +39,14 @@ body > header > h1 {
     margin: 0;
 }
 
-body > section , body > form > section{
+
+body > section ,body > form > section{
     margin: 8px 20%;
     padding: 18px;
     overflow: hidden;
-    .bild
-    background-image: url("testBild2.jpg");
-	background-repeat: no-repeat;
+.bild
+background-image: url("testBild2.jpg");
+    background-repeat: no-repeat;
     background-size: cover;
     background-position:  100%;
 }
@@ -59,4 +60,29 @@ body > footer {
 
 body > footer > p {
     margin: 0;
+}
+.student-table {
+    width: 100%;
+}
+
+.student-header {
+    padding: 4px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.student-col-name {
+    padding: 4px;
+    text-align: left;
+}
+
+.student-col-courseCode, .student-col-courseName, .student-col-teacherFirstName, .student-col-teacherLastName {
+    padding: 4px;
+    text-align: right;
+}
+
+.student-footer {
+    padding: 4px;
+    font-weight: bold;
+    text-align: right;
 }
