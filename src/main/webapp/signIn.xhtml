@@ -10,34 +10,37 @@
     <ui:param name="pageTitle" value="Sign In"/>
     <ui:define name="panel-top">
         <section>
-            <ui:fragment rendered="#{not userManager.signedIn}">
-                <h1>Logga in</h1>
+            <!--<ui:fragment rendered="#{not userManager.signedIn}">-->
+            <ui:fragment rendered="#{not signInBean.loggedIn}">
+
+            <h1>Logga in</h1>
                 <p>Skriv ditt användarnamn</p>
             </ui:fragment>
 
-            <ui:fragment rendered="#{userManager.signedIn}">
+            <!--<ui:fragment rendered="#{userManager.signedIn}">-->
+            <ui:fragment rendered="#{signInBean.loggedIn}">
                 <h:form>
-                    <h1>Välkommen, #{userManager.currentUser.firstName}!</h1>
+                    <h1>Välkommen, #{signInBean.userName}!</h1>
                     <p>Du är redan inloggad.
-                        Vill du<h:commandLink action="#{userManager.signOut}">logga ut</h:commandLink>?</p>
+                        Vill du<h:commandLink action="#{signInBean.setLoggedIn(false)}">logga ut</h:commandLink>?</p>
                 </h:form>
             </ui:fragment>
         </section>
     </ui:define>
 
     <ui:define name="panel-main">
-        <ui:fragment rendered="#{not userManager.signedIn}">
+        <ui:fragment rendered="#{not signInBean.loggedIn}">
             <section>
                 <h:form>
                     <h:panelGrid columns="2" styleClass="form-grid" columnClasses="form-column-label,form-column-input">
                         <h:outputLabel for="username">Användarnamn</h:outputLabel>
-                        <h:inputText id="username" value="#{signIn.username}"/>
+                        <h:inputText id="username" value="#{signInBean.userName}"/>
 
                         <h:outputLabel for="password">Password</h:outputLabel>
-                        <h:inputSecret id="password" value="#{signIn.password}"/> <!--anroppar user bean-->
+                        <h:inputSecret id="password" value="#{signInBean.userPassword}"/> <!--anroppar userId bean-->
 
                         <h:outputText value=""/>
-                        <h:commandButton value="Submit" action="#{signIn.submit}"/>  <!--anroppar usermanager-->
+                        <h:commandButton value="Submit" action="#{signInBean.logIn()}"/>  <!--anroppar usermanager-->
                     </h:panelGrid>
                 </h:form>
             </section>

@@ -18,18 +18,13 @@
     <ui:define name="panel-main">
         <h:dataTable value="#{userBean.users.users}" var="myUser">
         <h:column>
-        #{myUser.name} #{myUser.role}
+        #{myUser.name} #{myUser.role.toString()}
         </h:column>
         </h:dataTable>
     <section>
-        <h1>Student</h1>
-
-        <h:outputLink value="stats.xhtml">Se statistik</h:outputLink><br/>
-        <br/>
-
         <h:dataTable value="#{coursesBean.courses.courses}" var="myCourse">
             <h:column>
-                <h2>#{myCourse.name}</h2>
+                <h1>#{myCourse.name}</h1>
                 #{myCourse.description}
             </h:column>
         </h:dataTable>
