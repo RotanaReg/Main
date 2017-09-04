@@ -3,6 +3,7 @@ package com.rotanareg.skolan.domains;
 import com.rotanareg.skolan.AssociatedPersist.CourseUserAssociation;
 import com.rotanareg.skolan.userPersist.UserEntity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * Created by Nils Gerstner on 8/20/17.
  */
 
-public class Course {
+public class Course implements Serializable{
     private long id;
     private String name;
     private String description;

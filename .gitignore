@@ -2,3 +2,5 @@
 target/*
 *.war
 target/RotanaReg.war
+com.rotanareg.skolan.iml
+target/RotanaReg.war

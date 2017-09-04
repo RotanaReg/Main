@@ -12,9 +12,9 @@ public enum Role {
             case STUDENT:
                 return "Student";
             case TEACHER:
-                return "Teacher";
+                return "Lärare";
             case ADMIN:
-                return "Admin";
+                return "Administratör";
         }
 
         return "--not defined--";   // should never happen

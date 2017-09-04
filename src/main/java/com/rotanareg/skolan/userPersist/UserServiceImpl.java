@@ -6,6 +6,7 @@ import com.rotanareg.skolan.domains.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,10 +64,16 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> getUserContaining(String filter) {
-        List<UserEntity> userEntityList = em.createNamedQuery("selectSomeUsers").setParameter("filt",filter).getResultList();
+        try {
+            List<UserEntity> userEntityList = em.createNamedQuery("selectSomeUsers").setParameter("filt", filter).getResultList();
 
-        return userEntityList.stream().
-                map(c->new User(c.getId(),c.getName(),c.getLastName(),c.getRole(),c.getPassWord())).
-                collect(Collectors.toList());
+            if (!userEntityList.isEmpty())
+                return userEntityList.stream().map(c -> new User(c.getId(), c.getName(), c.getLastName(), c.getRole(), c.getPassWord())).
+                        collect(Collectors.toList());
+        }catch (NullPointerException e){
+            System.out.println("No user containing " + filter + " found");
+            e.printStackTrace();
+        }
+            return new ArrayList<User>();
     }
 }

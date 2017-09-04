@@ -1,16 +1,22 @@
 package com.rotanareg.skolan.domains;
 
 import com.rotanareg.skolan.Role;
+
 /**
  * Created by Nils Gerstner on 8/20/17.
  */
 
-public class User {
+public class User implements java.io.Serializable{
     private long id;
     private String name;
     private String lastName;
     private Role role;
     private String passWord;
+
+    public User(String name, String passWord){
+        this.name = name;
+        this.passWord = passWord;
+    }
 
     public User(String name, String lastName, Role role){
         this.name = name;
