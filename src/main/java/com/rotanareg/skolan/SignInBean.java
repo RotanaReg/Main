@@ -5,6 +5,7 @@ import com.rotanareg.skolan.userPersist.UserService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.util.List;
 
@@ -40,10 +41,13 @@ public class SignInBean {
         return "false";
     }
 
-    public void logOut(){
+    public String logOut(){
         userName = null;
         userPassword = null;
         currentUser = null;
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+
+        return "index?faces-redirect=true";
     }
 
     public String getUserName() {
