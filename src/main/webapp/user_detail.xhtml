@@ -21,38 +21,23 @@
         <section>
             <h:form>
                 <h:panelGrid columns="2" styleClass="form-grid" columnClasses="form-column-label,form-column-input">
-                    <h:outputLabel for="username">Användarnamn</h:outputLabel>
-                    <h:inputText id="username" value="#{userDetail.user.username}" size="20"
+                    <h:outputLabel for="name">Namn</h:outputLabel>
+                    <h:inputText id="name" value="#{userService.user.name}" size="20"
                                  readonly="#{userManager.signedIn}"/>
 
                     <h:outputLabel for="password">Password</h:outputLabel>
-                    <h:inputSecret id="password" value="#{userDetail.user.password}" size="20"/>
-
-                    <h:outputLabel for="firstName">Förnamn</h:outputLabel>
-                    <h:inputText id="firstName" value="#{userDetail.user.firstName}" size="30"/>
+                    <h:inputSecret id="password" value="#{userService.user.password}" size="20"/>
 
                     <h:outputLabel for="lastName">Efternamn</h:outputLabel>
-                    <h:inputText id="lastName" value="#{userDetail.user.lastName}" size="30"/>
-
-                    <h:outputLabel for="emailAddress">E-mail address</h:outputLabel>
-                    <h:inputText id="emailAddress" value="#{userDetail.user.emailAddress}" size="20"/>
-
-                    <h:outputLabel for="phoneNumber">Telefon nummer</h:outputLabel>
-                    <h:inputText id="phoneNumber" value="#{userDetail.user.phoneNumber}" size="20"/>
-
-                    <h:outputLabel for="birthDate">Födelsedatum</h:outputLabel>
-                    <h:inputText id="birthDate" p:type="date" value="#{userDetail.user.birthDate}">
-                        <f:convertDateTime pattern="yyyy-MM-dd"/>
-                    </h:inputText>
+                    <h:inputText id="lastName" value="#{userService.user.lastName}" size="30"/>
 
                     <h:outputLabel for="role" value="Roll:"/>
-                    <h:selectOneRadio rendered="true" id="role" value="#{userDetail.user.role}" label="role"
+                    <h:selectOneRadio rendered="true" id="role" value="#{userService.user.role}" label="role"
                                       filter="true" panelStyle="width:250px">
-                        <f:selectItems value="#{userDetail.user.rolesList}"/>
+                        <f:selectItems value="#{userService.user.role}"/>
                     </h:selectOneRadio>
-
                     <h:outputText value=""/>
-                    <h:commandButton value="Submit" action="#{userDetail.submit}"/>
+                    <h:commandButton value="Submit" action="#{userBean.addUser}"/>
                 </h:panelGrid>
 
             </h:form>

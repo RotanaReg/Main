@@ -1,36 +1,34 @@
 package com.rotanareg.skolan;
 
+import com.rotanareg.skolan.coursePersist.CourseService;
+import com.rotanareg.skolan.domains.Course;
+
 import javax.ejb.EJB;
-
-        import com.rotanareg.skolan.domains.Course;
-        import com.rotanareg.skolan.coursePersist.*;
-
-        import javax.faces.bean.ManagedBean;
-        import javax.faces.bean.RequestScoped;
-        import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 
 @ManagedBean
 @RequestScoped
 public class CoursesBean {
     private Long id;
-    private String name;
+    private String courseTitle;
     private String description;
-    private String courseNr;
+    private String courseCode;
     @EJB
     CourseService courseService;
 
 
     public String addCourse(){
         if (getId()==null)
-            courseService.addCourse(new Course(name, description, courseNr));
+            courseService.addCourse(new Course(courseTitle, description, courseCode));
         else
-            courseService.updateCourse(new Course(getId(),getName(),getDescription(),getCourseNr()));
+            courseService.updateCourse(new Course(getId(),getCourseTitle(),getDescription(),getCourseCode()));
 
         setId(null);
-        setName("");
+        setCourseTitle("");
         setDescription("");
-        setCourseNr("");
+        setCourseCode("");
         return "course";
     }
 
@@ -42,12 +40,12 @@ public class CoursesBean {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCourseTitle() {
+        return courseTitle;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCourseTitle(String courseTitle) {
+        this.courseTitle = courseTitle;
     }
 
     public String getDescription() {
@@ -58,12 +56,12 @@ public class CoursesBean {
         this.description = description;
     }
 
-    public String getCourseNr() {
-        return courseNr;
+    public String getCourseCode() {
+        return courseCode;
     }
 
-    public void setCourseNr(String courseNr) {
-        this.courseNr = courseNr;
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 
     public CourseService getCourses() {

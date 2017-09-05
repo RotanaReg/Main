@@ -1,10 +1,8 @@
 package com.rotanareg.skolan.domains;
 
 import com.rotanareg.skolan.AssociatedPersist.CourseUserAssociation;
-import com.rotanareg.skolan.userPersist.UserEntity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,22 +11,22 @@ import java.util.List;
 
 public class Course implements Serializable{
     private long id;
-    private String name;
+    private String courseTitle;
     private String description;
-    private String courseNr;
+    private String courseCode;
     private List<CourseUserAssociation> persons;
 
     public Course(String name, String description, String courseNr){
-        this.name = name;
+        this.courseTitle = courseTitle;
         this.description = description;
-        this.courseNr = courseNr;
+        this.courseCode = courseCode;
     }
 
-    public Course(long id, String name, String description, String courseNr){
+    public Course(long id, String courseTitle, String description, String courseCode){
         this.id = id;
-        this.name = name;
+        this.courseTitle = courseTitle;
         this.description = description;
-        this.courseNr = courseNr;
+        this.courseCode = courseCode;
     }
 
     public long getId() {
@@ -39,12 +37,12 @@ public class Course implements Serializable{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCourseTitle() {
+        return courseTitle;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCourseTitle(String courseTitle) {
+        this.courseTitle = courseTitle;
     }
 
     public String getDescription() {
@@ -55,12 +53,12 @@ public class Course implements Serializable{
         this.description = description;
     }
 
-    public String getCourseNr() {
-        return courseNr;
+    public String getCourseCode() {
+        return courseCode;
     }
 
-    public void setCourseNr(String courseNr) {
-        this.courseNr = courseNr;
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 
     public List<CourseUserAssociation> getPersons() {
@@ -75,8 +73,8 @@ public class Course implements Serializable{
     public String toString(){
         final StringBuilder sbc = new StringBuilder("CourseEntity{");
         sbc.append("id=").append(id);
-        sbc.append(", courseCode='").append(courseNr).append('\'');
-        sbc.append(", courseTitle='").append(name).append('\'');
+        sbc.append(", courseCode='").append(courseCode).append('\'');
+        sbc.append(", courseTitle='").append(courseTitle).append('\'');
         sbc.append(", description='").append(description).append('\'');
         sbc.append('}');
         return sbc.toString();

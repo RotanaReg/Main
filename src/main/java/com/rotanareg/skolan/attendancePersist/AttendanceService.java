@@ -9,9 +9,7 @@ import com.rotanareg.skolan.domains.*;
 import javax.ejb.Local;
 import java.util.List;
 
-/**
- * Created by Marko K. Seppänen.
- */
+
 @Local
 public interface AttendanceService {
 
@@ -32,8 +30,8 @@ public interface AttendanceService {
 /*
     public List<CourseDomain> getCoursesNameContain(String filter);
     */
-    String getCourseNr(Long id);
+    String getCourseCode(Long id);
 
-    String getCourseName(Long id);
+    String getCourseTitle(Long id);
 
 }

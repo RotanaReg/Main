@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name = "Course")
 @NamedQueries({
         @NamedQuery(name="selectAllCourses",query="SELECT c FROM CourseEntity c"),
-        @NamedQuery(name="selectSomeCourses",query="SELECT t FROM CourseEntity t WHERE LOCATE(:filt,t.name) >0 ")
+        @NamedQuery(name="selectSomeCourses",query="SELECT t FROM CourseEntity t WHERE LOCATE(:filt,t.courseTitle) >0 ")
 })
 public class CourseEntity {
     
@@ -23,10 +23,10 @@ public class CourseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
+    private String courseTitle;
     @Column(length = 10000)
     private String description;
-    private String courseNr;
+    private String courseCode;
 
     @OneToMany(mappedBy="course")
     private List<CourseUserAssociation> persons;
@@ -34,10 +34,10 @@ public class CourseEntity {
     public CourseEntity() {
     }
 
-    public CourseEntity(String name, String description, String courseNr) {
-        this.name = name;
+    public CourseEntity(String courseTitle, String description, String courseCode) {
+        this.courseTitle = courseTitle;
         this.description = description;
-        this.courseNr = courseNr;
+        this.courseCode = courseCode;
     }
 
     public Long getId() {
@@ -48,12 +48,12 @@ public class CourseEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCourseTitle() {
+        return courseTitle;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCourseTitle(String courseTitle) {
+        this.courseTitle = courseTitle;
     }
 
     public String getDescription() {
@@ -64,12 +64,12 @@ public class CourseEntity {
         this.description = description;
     }
 
-    public String getCourseNr() {
-        return courseNr;
+    public String getCourseCode() {
+        return courseCode;
     }
 
-    public void setCourseNr(String courseNr) {
-        this.courseNr = courseNr;
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 
     public List<CourseUserAssociation> getPersons() {

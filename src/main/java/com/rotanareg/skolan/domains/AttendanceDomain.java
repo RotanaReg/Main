@@ -17,8 +17,8 @@ public class AttendanceDomain {
     private Long id;
     //    private Course course;
 //    private User user;
-    private String courseNr;
-    private String courseName;
+    private String courseCode;
+    private String courseTitle;
     private String userNameFull;
     private Date sqlDate;           //yyyy-mm-dd
     private boolean hasAttended;
@@ -36,8 +36,8 @@ public class AttendanceDomain {
 
     public AttendanceDomain(Long id, Course course, User user, Date date, boolean hasAttended) {
         this.id = id;
-        this.courseName = course.getName();
-        this.courseNr = course.getCourseNr();
+        this.courseTitle = course.getCourseTitle();
+        this.courseCode = course.getCourseCode();
         this.userNameFull = user.getName() + " " + user.getLastName();  // TODO: perhaps move this part to be handled in the User class.
         this.sqlDate = date;
         this.hasAttended = hasAttended;
@@ -45,8 +45,8 @@ public class AttendanceDomain {
 
     public AttendanceDomain(Long id, CourseEntity eCourse, UserEntity eUser, Date date, boolean hasAttended) {
         this.id = id;
-        this.courseName = eCourse.getName();
-        this.courseNr = eCourse.getCourseNr();
+        this.courseTitle = eCourse.getCourseTitle();
+        this.courseCode = eCourse.getCourseCode();
         this.userNameFull = eUser.getName() + " " + eUser.getLastName();    // TODO: perhaps move this part to be handled in the User class.
         this.sqlDate = date;
         this.hasAttended = hasAttended;
@@ -92,20 +92,20 @@ public class AttendanceDomain {
         this.hasAttended = hasAttended;
     }
 
-    public String getCourseNr() {
-        return courseNr;
+    public String getCourseCode() {
+        return courseCode;
     }
 
-    public void setCourseNr(String courseNr) {
-        this.courseNr = courseNr;
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getCourseTitle() {
+        return courseTitle;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setCourseTitle(String courseTitle) {
+        this.courseTitle = courseTitle;
     }
 
     public String getUserNameFull() {

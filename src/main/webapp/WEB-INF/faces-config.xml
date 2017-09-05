@@ -29,6 +29,11 @@
             <from-outcome>false</from-outcome>
             <to-view-id>/signIn.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{signInBean.logOut()}</from-action>
+            <from-outcome>Logga ut</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
 

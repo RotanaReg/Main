@@ -15,9 +15,7 @@ import java.sql.Date;
 import java.text.DateFormat.*;
 import java.text.*;
 
-/**
- * Created by Marko K. Seppänen.
- */
+
 /*@NamedQueries({
         @NamedQuery(name = "selectAll", query = "SELECT p FROM Course p"),
         @NamedQuery(name = "selectSome", query = "SELECT t FROM Course t WHERE LOCATE(:filt,t.name) >0 ")
@@ -61,13 +59,13 @@ public class AttendanceEntity {
         this.hasAttended = hasAttended;
     }
 
- /*   public AttendanceEntity(CourseEntity course, UserEntity user, Date sqlDate, boolean hasAttended) {
+   public AttendanceEntity(CourseEntity course, UserEntity user, Date sqlDate, boolean hasAttended) {
         this.course = course;
         this.user = user;
         this.sqlDate = sqlDate;
         this.hasAttended = hasAttended;
     }
-*/
+
     public Long getId() {
         return id;
     }

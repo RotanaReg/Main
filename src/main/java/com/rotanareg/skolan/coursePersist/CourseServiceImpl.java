@@ -16,7 +16,7 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public void addCourse(Course course) {
-        CourseEntity c = new CourseEntity(course.getName(),course.getDescription(),course.getCourseNr());
+        CourseEntity c = new CourseEntity(course.getCourseTitle(),course.getDescription(),course.getCourseCode());
         em.persist(c);
 
     }
@@ -24,9 +24,9 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public void updateCourse(Course course) {
         CourseEntity c = em.find(CourseEntity.class,course.getId());
-        c.setName(course.getName());
+        c.setCourseTitle(course.getCourseTitle());
         c.setDescription(course.getDescription());
-        c.setCourseNr(course.getCourseNr());
+        c.setCourseCode(course.getCourseCode());
         em.merge(c);
     }
 
@@ -39,7 +39,7 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public Course getCourse(Long id) {
         CourseEntity c = em.find(CourseEntity.class,id);
-        Course cd = new Course(c.getId(),c.getName(),c.getDescription(),c.getCourseNr());
+        Course cd = new Course(c.getId(),c.getCourseTitle(),c.getDescription(),c.getCourseCode());
 
         return cd;
     }
@@ -62,7 +62,7 @@ public class CourseServiceImpl implements CourseService{
            em.persist(c);
        }
        return courseEntityList.stream().
-               map(c->new Course(c.getId(),c.getName(),c.getDescription(),c.getCourseNr())).
+               map(c->new Course(c.getId(),c.getCourseTitle(),c.getDescription(),c.getCourseCode())).
                collect(Collectors.toList());
     }
 
@@ -71,7 +71,7 @@ public class CourseServiceImpl implements CourseService{
         List<CourseEntity> courseEntityList = em.createNamedQuery("selectSomeCourses").setParameter("filt",filter).getResultList();
 
         return courseEntityList.stream().
-                map(c->new Course(c.getId(),c.getName(),c.getDescription(),c.getCourseNr())).
+                map(c->new Course(c.getId(),c.getCourseTitle(),c.getDescription(),c.getCourseCode())).
                 collect(Collectors.toList());
     }
 

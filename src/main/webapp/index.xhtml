@@ -8,6 +8,13 @@
 
 <ui:composition template="/templates/template_page.xhtml">
     <ui:param name="pageTitle" value="Första sidan"/>
+    <ui:define name="panel-top">
+        <section>
+            <ui:fragment rendered="#{not signInBean.isLoggedIn()}">
+                <p> <h:outputLink value="signIn.xhtml">Logga in</h:outputLink></p>
+            </ui:fragment>
+        </section>
+    </ui:define>
 
     <ui:define name="panel-main">
         <section class="bild">

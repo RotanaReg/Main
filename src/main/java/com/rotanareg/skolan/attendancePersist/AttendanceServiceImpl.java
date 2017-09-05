@@ -87,7 +87,7 @@ public class AttendanceServiceImpl implements AttendanceService {
             // AttendanceDomain(Long id, CourseEntity eCourse, UserEntity eUser, Date date, boolean hasAttended):
 
             //******************** Commented, because of missing constructor... **************************
-            //       domainList.add(new AttendanceDomain(e.getId(), e.getCourse(), e.getUser(), e.getDate(), e.isHasAttended()));
+                  domainList.add(new AttendanceDomain(e.getId(), e.getCourse(), e.getUser(), e.getDate(), e.isHasAttended()));
         }
         return domainList; 
     }
@@ -103,14 +103,14 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     }
 */
-    public String getCourseNr(Long id) {
+    public String getCourseCode(Long id) {
         AttendanceEntity e = em.find(AttendanceEntity.class, id);
-        return e.getCourse().getCourseNr();
+        return e.getCourse().getCourseCode();
     }
 
-    public String getCourseName(Long id) {
+    public String getCourseTitle(Long id) {
         AttendanceEntity e = em.find(AttendanceEntity.class, id);
-        return e.getCourse().getName();
+        return e.getCourse().getCourseTitle();
     }
 
 }
