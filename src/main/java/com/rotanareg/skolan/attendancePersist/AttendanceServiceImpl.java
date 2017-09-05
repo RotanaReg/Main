@@ -86,8 +86,12 @@ public class AttendanceServiceImpl implements AttendanceService {
             // TODO: completer below
             // AttendanceDomain(Long id, CourseEntity eCourse, UserEntity eUser, Date date, boolean hasAttended):
 
+<<<<<<< HEAD
             //******************** Commented, because of missing constructor... **************************
                   domainList.add(new AttendanceDomain(e.getId(), e.getCourse(), e.getUser(), e.getDate(), e.isHasAttended()));
+=======
+            domainList.add(new AttendanceDomain(e.getId(), e.getCourse(), e.getUser(), e.getDate(), e.isHasAttended()));
+>>>>>>> d5672be5db46db5d1c4bbfd509e8c977cbb48c1f
         }
         return domainList; 
     }
