@@ -14,8 +14,9 @@ import java.util.List;
 @Entity
 @Table(name = "Course")
 @NamedQueries({
+        @NamedQuery(name="selectCourses",query="SELECT a FROM CourseEntity a"),
         @NamedQuery(name="selectAllCourses",query="SELECT c FROM RegisteredUserCourseEntity c"),
-       // @NamedQuery(name="selectSomeCourses",query="SELECT t FROM RegisteredUserCourseEntity t WHERE LOCATE(:filt,t.courseTitle) >0 ")
+        //@NamedQuery(name="selectSomeCourses",query="SELECT t FROM RegisteredUserCourseEntity t WHERE LOCATE(:filt,t.courseTitle) >0 ")
 })
 public class CourseEntity {
     
