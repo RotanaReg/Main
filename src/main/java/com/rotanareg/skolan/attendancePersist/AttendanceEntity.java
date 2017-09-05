@@ -61,13 +61,13 @@ public class AttendanceEntity {
         this.hasAttended = hasAttended;
     }
 
- /*   public AttendanceEntity(CourseEntity course, UserEntity user, Date sqlDate, boolean hasAttended) {
+    public AttendanceEntity(CourseEntity course, UserEntity user, Date sqlDate, boolean hasAttended) {
         this.course = course;
         this.user = user;
         this.sqlDate = sqlDate;
         this.hasAttended = hasAttended;
     }
-*/
+
     public Long getId() {
         return id;
     }
