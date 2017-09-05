@@ -59,11 +59,7 @@ public class AttendanceEntity {
         this.hasAttended = hasAttended;
     }
 
-<<<<<<< HEAD
    public AttendanceEntity(CourseEntity course, UserEntity user, Date sqlDate, boolean hasAttended) {
-=======
-    public AttendanceEntity(CourseEntity course, UserEntity user, Date sqlDate, boolean hasAttended) {
->>>>>>> d5672be5db46db5d1c4bbfd509e8c977cbb48c1f
         this.course = course;
         this.user = user;
         this.sqlDate = sqlDate;
