@@ -12,13 +12,20 @@
 
     <ui:define name="panel-top">
         <section>
+            <ui:fragment rendered="#{signInBean.loggedIn}">
+                <h:form>
+                    <h1>Välkommen #{signInBean.userName}!</h1>
+
+                    <p>  <h:commandLink action="#{signInBean.logOut}">Logga ut</h:commandLink></p>
+                </h:form>
+            </ui:fragment>
         </section>
     </ui:define>
 
 
     <ui:define name="panel-main">
         <section>
-            <h1>Admin</h1>
+            <h:outputLink value="course_details.xhtml">Registrera nya kurser</h:outputLink><br/>
 
             <h:outputLink value="user_detail.xhtml">Registrera nya användare</h:outputLink><br/>
             <h:outputLink value="stats.xhtml">Se statistik</h:outputLink>
