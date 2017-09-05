@@ -1,9 +1,8 @@
 package com.rotanareg.skolan;
 
-import java.util.List;
-
 import com.rotanareg.skolan.domains.User;
-import com.rotanareg.skolan.userPersist.*;
+import com.rotanareg.skolan.userPersist.UserService;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -22,7 +21,7 @@ public class UserBean {
 
     public String addUser(){
         if (getId()==null)
-            userService.addUser(new User(name,lastName,role));
+            userService.addUser(new User(name,lastName,role,passWord));
         else
             userService.addUser(new User(getId(),getName(),getLastName(),getRole(),getPassWord()));
 

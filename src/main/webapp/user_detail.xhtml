@@ -7,9 +7,7 @@
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="templates/template_page.xhtml">
-    <f:metadata>
-        <f:viewAction action="#{userDetail.onload}"/>
-    </f:metadata>
+ 
     <ui:param name="pageTitle" value="Användar detaljer"/>
 
     <ui:define name="panel-top">
@@ -19,27 +17,28 @@
     </ui:define>
     <ui:define name="panel-main">
         <section>
-            <h:form>
+             <h:form>
                 <h:panelGrid columns="2" styleClass="form-grid" columnClasses="form-column-label,form-column-input">
                     <h:outputLabel for="name">Namn</h:outputLabel>
-                    <h:inputText id="name" value="#{userService.user.name}" size="20"
-                                 readonly="#{userManager.signedIn}"/>
+                    <h:inputText id="name" value="#{userBean.name}" size="20"/>
 
                     <h:outputLabel for="password">Password</h:outputLabel>
-                    <h:inputSecret id="password" value="#{userService.user.password}" size="20"/>
+                    <h:inputSecret id="password" value="#{userBean.passWord}" size="20"/>
 
                     <h:outputLabel for="lastName">Efternamn</h:outputLabel>
-                    <h:inputText id="lastName" value="#{userService.user.lastName}" size="30"/>
+                    <h:inputText id="lastName" value="#{userBean.lastName}" size="30"/>
 
                     <h:outputLabel for="role" value="Roll:"/>
-                    <h:selectOneRadio rendered="true" id="role" value="#{userService.user.role}" label="role"
-                                      filter="true" panelStyle="width:250px">
-                        <f:selectItems value="#{userService.user.role}"/>
+
+                    <h:selectOneRadio value="#{userBean.role}">
+                        <f:selectItem itemValue="STUDENT" itemLabel="Student" />
+                        <f:selectItem itemValue="TEACHER" itemLabel="Lärare" />
+                        <f:selectItem itemValue="ADMIN" itemLabel="Administratör" />
                     </h:selectOneRadio>
+
                     <h:outputText value=""/>
                     <h:commandButton value="Submit" action="#{userBean.addUser}"/>
                 </h:panelGrid>
-
             </h:form>
         </section>
     </ui:define>

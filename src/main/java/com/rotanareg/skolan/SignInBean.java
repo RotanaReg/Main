@@ -1,13 +1,11 @@
 package com.rotanareg.skolan;
 
+import com.rotanareg.skolan.domains.User;
+import com.rotanareg.skolan.userPersist.UserService;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
-
-import com.rotanareg.skolan.domains.User;
-import com.rotanareg.skolan.userPersist.UserService;
-import com.rotanareg.skolan.userPersist.UserServiceImpl;
-
 import java.util.List;
 
 /**
@@ -27,6 +25,7 @@ public class SignInBean {
     public SignInBean() {}
 
     public String logIn(){
+        userService.getUsers();
         List<User> user = userService.getUserContaining(userName);
 
         if(!user.isEmpty()) {

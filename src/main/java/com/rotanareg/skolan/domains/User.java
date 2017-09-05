@@ -18,11 +18,11 @@ public class User implements java.io.Serializable{
         this.passWord = passWord;
     }
 
-    public User(String name, String lastName, Role role){
+    public User(String name, String lastName, Role role, String passWord){
         this.name = name;
         this.lastName = lastName;
         this.role = role;
-        this.passWord = null;
+        this.passWord = passWord;
     }
 
     public User(long id, String name, String lastName, Role role, String passWord){
