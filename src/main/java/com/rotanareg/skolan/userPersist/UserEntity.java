@@ -1,7 +1,7 @@
 package com.rotanareg.skolan.userPersist;
 
 import javax.persistence.*;
-import com.rotanareg.skolan.AssociatedPersist.CourseUserAssociation;
+import com.rotanareg.skolan.registeredUserCoursePersist.*;
 import com.rotanareg.skolan.Role;
 import com.rotanareg.skolan.coursePersist.CourseEntity;
 
@@ -27,7 +27,7 @@ public class UserEntity {
     private String passWord;
 
     @OneToMany(mappedBy = "person")
-    private List<CourseUserAssociation> courses;
+    private List<RegisteredUserCourseEntity> courses;
 
     public UserEntity() {
     }
@@ -80,12 +80,12 @@ public class UserEntity {
         return passWord;
     }
 
-    public List<CourseUserAssociation> getCourses() {
+    public List<RegisteredUserCourseEntity> getCourses() {
         return courses;
     }
 
     public void addCourse (CourseEntity course, boolean isTeacher) {
-        CourseUserAssociation courseUserAssociation = new CourseUserAssociation();
+        RegisteredUserCourseEntity courseUserAssociation = new RegisteredUserCourseEntity();
         if (this.getRole() == Role.ADMIN) {
             System.out.println("Nor TEACHER or STUDENT; not added!");
         } else {

@@ -1,6 +1,6 @@
 package com.rotanareg.skolan.coursePersist;
 
-import com.rotanareg.skolan.AssociatedPersist.CourseUserAssociation;
+import com.rotanareg.skolan.registeredUserCoursePersist.*;
 import com.rotanareg.skolan.Role;
 import com.rotanareg.skolan.userPersist.UserEntity;
 
@@ -14,8 +14,8 @@ import java.util.List;
 @Entity
 @Table(name = "Course")
 @NamedQueries({
-        @NamedQuery(name="selectAllCourses",query="SELECT c FROM CourseEntity c"),
-        @NamedQuery(name="selectSomeCourses",query="SELECT t FROM CourseEntity t WHERE LOCATE(:filt,t.courseTitle) >0 ")
+        @NamedQuery(name="selectAllCourses",query="SELECT c FROM RegisteredUserCourseEntity c"),
+       // @NamedQuery(name="selectSomeCourses",query="SELECT t FROM RegisteredUserCourseEntity t WHERE LOCATE(:filt,t.courseTitle) >0 ")
 })
 public class CourseEntity {
     
@@ -29,7 +29,7 @@ public class CourseEntity {
     private String courseCode;
 
     @OneToMany(mappedBy="course")
-    private List<CourseUserAssociation> persons;
+    private List<RegisteredUserCourseEntity> persons;
 
     public CourseEntity() {
     }
@@ -72,11 +72,11 @@ public class CourseEntity {
         this.courseCode = courseCode;
     }
 
-    public List<CourseUserAssociation> getPersons() {
+    public List<RegisteredUserCourseEntity> getPersons() {
         return persons;
     }
     public void addPerson (UserEntity person, boolean isTeacher) {
-        CourseUserAssociation courseUserAssociation = new CourseUserAssociation();
+        RegisteredUserCourseEntity courseUserAssociation = new RegisteredUserCourseEntity();
         if (person.getRole() == Role.ADMIN) {
             System.out.println("Nor TEACHER or STUDENT; not added!");
         } else {

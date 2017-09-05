@@ -1,4 +1,6 @@
-package com.rotanareg.skolan.AssociatedPersist;
+package com.rotanareg.skolan.registeredUserCoursePersist;
+
+import javax.persistence.Entity;
 
 import com.rotanareg.skolan.coursePersist.CourseEntity;
 import com.rotanareg.skolan.userPersist.UserEntity;
@@ -11,8 +13,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="COURSE_USER")
-@IdClass(CourseUserAssociationId.class)
-public class CourseUserAssociation {
+@IdClass(RegisteredUserCourseId.class)
+public class RegisteredUserCourseEntity {
 
     @Id
     private long courseId;

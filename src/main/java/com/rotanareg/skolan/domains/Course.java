@@ -1,6 +1,6 @@
 package com.rotanareg.skolan.domains;
 
-import com.rotanareg.skolan.AssociatedPersist.CourseUserAssociation;
+import com.rotanareg.skolan.registeredUserCoursePersist.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,7 +14,7 @@ public class Course implements Serializable{
     private String courseTitle;
     private String description;
     private String courseCode;
-    private List<CourseUserAssociation> persons;
+    private List<RegisteredUserCourseEntity> persons;
 
     public Course(String name, String description, String courseNr){
         this.courseTitle = courseTitle;
@@ -61,11 +61,11 @@ public class Course implements Serializable{
         this.courseCode = courseCode;
     }
 
-    public List<CourseUserAssociation> getPersons() {
+    public List<RegisteredUserCourseEntity> getPersons() {
         return persons;
     }
 
-    public void setPersons(List<CourseUserAssociation> persons) {
+    public void setPersons(List<RegisteredUserCourseEntity> persons) {
         this.persons = persons;
     }
 

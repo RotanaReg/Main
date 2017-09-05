@@ -1,11 +1,11 @@
-package com.rotanareg.skolan.AssociatedPersist;
+package com.rotanareg.skolan.registeredUserCoursePersist;
 
 import java.io.Serializable;
 
 /**
  * Created by Nils Gerstner on 2017-08-31.
  */
-public class CourseUserAssociationId implements Serializable {
+public class RegisteredUserCourseId implements Serializable {
     private long personId;
     private long courseId;
 
@@ -16,8 +16,8 @@ public class CourseUserAssociationId implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof CourseUserAssociationId) {
-            CourseUserAssociationId otherId = (CourseUserAssociationId) o;
+        if (o instanceof RegisteredUserCourseId) {
+            RegisteredUserCourseId otherId = (RegisteredUserCourseId) o;
             return (otherId.personId == this.personId) && (otherId.courseId == this.courseId);
         }
         return false;
