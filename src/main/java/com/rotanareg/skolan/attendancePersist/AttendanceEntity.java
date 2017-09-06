@@ -5,63 +5,50 @@
 
 package com.rotanareg.skolan.attendancePersist;
 
-import com.rotanareg.skolan.coursePersist.*;
-import com.rotanareg.skolan.userPersist.*;
+import com.rotanareg.skolan.coursePersist.CourseEntity;
+import com.rotanareg.skolan.domains.Course;
+import com.rotanareg.skolan.domains.User;
+import com.rotanareg.skolan.userPersist.UserEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-//import java.util.*;
 import java.sql.Date;
-import java.text.DateFormat.*;
-import java.text.*;
 
-
-/*@NamedQueries({
-        @NamedQuery(name = "selectAll", query = "SELECT p FROM Course p"),
-        @NamedQuery(name = "selectSome", query = "SELECT t FROM Course t WHERE LOCATE(:filt,t.name) >0 ")
-})*/
 @Entity
-@Table(name = "Attendance")
+@Table(name = "Attendance",
+        uniqueConstraints={@UniqueConstraint(columnNames = {"USER_ID", "COURSE_ID", "DATE"})})
 @NamedQueries({
-        @NamedQuery(name = "selectAll", query = "SELECT p FROM AttendanceEntity p"),
-        //@NamedQuery(name = "selectSome", query = "SELECT t FROM AttendanceEntity t WHERE LOCATE(:filt,t.name) >0 ")
-})
+        @NamedQuery(name = "selectAllAttendance", query = "SELECT p FROM AttendanceEntity p"),
+        @NamedQuery(name = "selectAttendanceByUserId", query = "SELECT u FROM AttendanceEntity u WHERE u.user.id = :filt"),
+        @NamedQuery(name = "selectAttendanceByCourseId", query = "SELECT c FROM AttendanceEntity c WHERE c.course.id = :filt")})
+
 public class AttendanceEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    //private long courseId;
-    //private long userId;
-
-    //@NotNull
-    //private Long courseId;
-//    @PrimaryKeyJoinColumn(name="COURSEID", referencedColumnName = "ID")
-    private CourseEntity course;
-
-    //@NotNull
-    //private Long userId;
-//    @PrimaryKeyJoinColumn(name="USERID", referencedColumnName = "ID")
+    @NotNull
+    @ManyToOne(fetch=FetchType.LAZY)
     private UserEntity user;
 
-    ////@Temporal(TemporalType.DATE)
-    ////@DateFormat(format = "yyyy-MM-dd")
-    //@NotNull
+    @NotNull
+    @ManyToOne(fetch=FetchType.LAZY)
+    private CourseEntity course;
+
+    @NotNull
+    @Column(name = "DATE")
     private Date sqlDate;           //yyyy-mm-dd
+
+    @Column(name = "ATTENDED")
     private boolean hasAttended;
 
     public AttendanceEntity() {
     }
 
-    public AttendanceEntity(Date date, boolean hasAttended) {
-        this.sqlDate = date;
-        this.hasAttended = hasAttended;
-    }
-
-   public AttendanceEntity(CourseEntity course, UserEntity user, Date sqlDate, boolean hasAttended) {
+    public AttendanceEntity(UserEntity user, CourseEntity course, Date sqlDate, boolean hasAttended) {
+        this.user = new UserEntity();
         this.course = course;
-        this.user = user;
         this.sqlDate = sqlDate;
         this.hasAttended = hasAttended;
     }
@@ -70,12 +57,8 @@ public class AttendanceEntity {
         return id;
     }
 
-/*    public CourseEntity getCourse() {
-        return course;
-    }
-
-    public void setCourse(CourseEntity course) {
-        this.course = course;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public UserEntity getUser() {
@@ -84,22 +67,6 @@ public class AttendanceEntity {
 
     public void setUser(UserEntity user) {
         this.user = user;
-    }
-*/
-    public Date getDate() {
-        return sqlDate;
-    }
-
-    public void setDate(Date date) {
-        this.sqlDate = date;
-    }
-
-    public boolean isHasAttended() {
-        return hasAttended;
-    }
-
-    public void setHasAttended(boolean hasAttended) {
-        this.hasAttended = hasAttended;
     }
 
     public CourseEntity getCourse() {
@@ -110,11 +77,19 @@ public class AttendanceEntity {
         this.course = course;
     }
 
-    public UserEntity getUser() {
-        return user;
+    public Date getSqlDate() {
+        return sqlDate;
     }
 
-    public void setUser(UserEntity user) {
-        this.user = user;
+    public void setSqlDate(Date sqlDate) {
+        this.sqlDate = sqlDate;
+    }
+
+    public boolean isHasAttended() {
+        return hasAttended;
+    }
+
+    public void setHasAttended(boolean hasAttended) {
+        this.hasAttended = hasAttended;
     }
 }

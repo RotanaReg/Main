@@ -15,23 +15,16 @@ public interface AttendanceService {
 
     // (C)reate / add.
     void addAttendance(AttendanceDomain attendance);
-/*
-    // (R)ead / get.
-    AttendanceDomain getAttendance(Long id);
 
-    // (U)pdate.
+    // (R)eade
+    List<AttendanceDomain> getAttendanceByUser(Long userId);
+    List<AttendanceDomain> getAttendanceByCourse(Long courseId);
+    List<AttendanceDomain> getAttendance();
+
+    // (U)pdate
     void updateAttendance(AttendanceDomain attendance);
 
-    // (D)elete.
-    void deleteAttendance(Long id);
-*/
-
-    List<AttendanceDomain> getAttendances();
-/*
-    public List<CourseDomain> getCoursesNameContain(String filter);
-    */
-    String getCourseCode(Long id);
-
-    String getCourseTitle(Long id);
+    // (D)elete
+    void removeAttendance(Long attendanceId);
 
 }

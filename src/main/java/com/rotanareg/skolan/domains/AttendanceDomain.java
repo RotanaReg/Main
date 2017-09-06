@@ -8,47 +8,36 @@ package com.rotanareg.skolan.domains;
 import com.rotanareg.skolan.coursePersist.CourseEntity;
 import com.rotanareg.skolan.userPersist.UserEntity;
 
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
  * Created by Marko K. Seppänen.
  */
 public class AttendanceDomain {
+
     private Long id;
-    //    private Course course;
-//    private User user;
-    private String courseCode;
-    private String courseTitle;
-    private String userNameFull;
+
+    private Long userId;
+
+    private Long courseId;
+
     private Date sqlDate;           //yyyy-mm-dd
+
     private boolean hasAttended;
 
-    public AttendanceDomain(Date date, boolean hasAttended) {
-        this.sqlDate = date;
+    public AttendanceDomain(Long userId, Long courseId, Date sqlDate, boolean hasAttended) {
+        this.userId = userId;
+        this.courseId = courseId;
+        this.sqlDate = sqlDate;
         this.hasAttended = hasAttended;
     }
 
-    public AttendanceDomain(Long id, Date date, boolean hasAttended) {
+    public AttendanceDomain(Long id, Long userId, Long courseId, Date sqlDate, boolean hasAttended) {
         this.id = id;
-        this.sqlDate = date;
-        this.hasAttended = hasAttended;
-    }
-
-    public AttendanceDomain(Long id, Course course, User user, Date date, boolean hasAttended) {
-        this.id = id;
-        this.courseTitle = course.getCourseTitle();
-        this.courseCode = course.getCourseCode();
-        this.userNameFull = user.getName() + " " + user.getLastName();  // TODO: perhaps move this part to be handled in the User class.
-        this.sqlDate = date;
-        this.hasAttended = hasAttended;
-    }
-
-    public AttendanceDomain(Long id, CourseEntity eCourse, UserEntity eUser, Date date, boolean hasAttended) {
-        this.id = id;
-        this.courseTitle = eCourse.getCourseTitle();
-        this.courseCode = eCourse.getCourseCode();
-        this.userNameFull = eUser.getName() + " " + eUser.getLastName();    // TODO: perhaps move this part to be handled in the User class.
-        this.sqlDate = date;
+        this.userId = userId;
+        this.courseId = courseId;
+        this.sqlDate = sqlDate;
         this.hasAttended = hasAttended;
     }
 
@@ -60,27 +49,27 @@ public class AttendanceDomain {
         this.id = id;
     }
 
-    /*    public Course getCourse() {
-            return course;
-        }
+    public Long getUserId() {
+        return userId;
+    }
 
-        public void setCourse(Course course) {
-            this.course = course;
-        }
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
-        public User getUser() {
-            return user;
-        }
+    public Long getCourseId() {
+        return courseId;
+    }
 
-        public void setUser(User user) {
-            this.user = user;
-        }
-    */
-    public Date getDate() {
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
+    }
+
+    public Date getSqlDate() {
         return sqlDate;
     }
 
-    public void setDate(Date date) {
+    public void setSqlDate(Date sqlDate) {
         this.sqlDate = sqlDate;
     }
 
@@ -90,29 +79,5 @@ public class AttendanceDomain {
 
     public void setHasAttended(boolean hasAttended) {
         this.hasAttended = hasAttended;
-    }
-
-    public String getCourseCode() {
-        return courseCode;
-    }
-
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
-    }
-
-    public String getCourseTitle() {
-        return courseTitle;
-    }
-
-    public void setCourseTitle(String courseTitle) {
-        this.courseTitle = courseTitle;
-    }
-
-    public String getUserNameFull() {
-        return userNameFull;
-    }
-
-    public void setUserNameFull(String userNameFull) {
-        this.userNameFull = userNameFull;
     }
 }

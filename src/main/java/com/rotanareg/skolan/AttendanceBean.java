@@ -22,52 +22,32 @@ import java.util.List;
 @RequestScoped
 public class AttendanceBean {
     private Long id;
-    //    private Course course;
-//    private User user;
-    private Date sqlDate;           //yyyy-mm-dd
+    private Long userId;
+    private Long courseId;
+    private Date date;
     private boolean hasAttended;
 
     @EJB
-    AttendanceService aService;
+    AttendanceService attendanceService;
 
     public String addCourse() {
-        if (getId() == null) {
-            aService.addAttendance(new AttendanceDomain(getDate(), isHasAttended()));
-        }else {
-            // Update
-//            aService.updateCourse(new AttendanceDomain(getId(), getDate(), isHasAttended()));
-        }
-
-        setId(null);
-        setDate(null);
-        setHasAttended(false);
-        return "stats_test";
-    }
-/*
-    public String editCourse(Long id) {
-        CourseDomain courseDomain = courseService.getCourse(id);
-        setId(courseDomain.getId());
-        setName(courseDomain.getName());
-        setCode(courseDomain.getCode());
-        return "course";
-    }
-
-    public String removeCourse(Long id) {
-        courseService.removeCourse(id);
-        return "course";
-    }
-*/
-    public List<AttendanceDomain> getAttendances() {
-        return aService.getAttendances();
-    }
-/*
-    public List<CourseDomain> getCoursesFilter() {
-        if (myFilter == null || myFilter.equals(""))
-            return courseService.getCourses();
+        if (getId()==null)
+            attendanceService.addAttendance(new AttendanceDomain(userId,courseId,date,hasAttended));
         else
-            return courseService.getCoursesNameContain(myFilter);
+            attendanceService.addAttendance(new AttendanceDomain(id,userId,courseId,date,hasAttended));
+        return "attendance";
     }
-*/
+
+    public List<AttendanceDomain> getAttendances() {
+        return attendanceService.getAttendance();
+    }
+    public List<AttendanceDomain> getAttendancesByUser(Long userId){
+        return attendanceService.getAttendanceByUser(userId);
+    }
+    public List<AttendanceDomain> getAttendanceByCourse(Long courseId){
+        return attendanceService.getAttendanceByCourse(courseId);
+    }
+
     public String getSubmitButton() {
         if (id == null)
             return "Add";
@@ -83,12 +63,28 @@ public class AttendanceBean {
         this.id = id;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
+    }
+
     public Date getDate() {
-        return sqlDate;
+        return date;
     }
 
     public void setDate(Date date) {
-        this.sqlDate = date;
+        this.date = date;
     }
 
     public boolean isHasAttended() {
@@ -98,13 +94,6 @@ public class AttendanceBean {
     public void setHasAttended(boolean hasAttended) {
         this.hasAttended = hasAttended;
     }
-
-    //public AttendanceService getCourseService() {
-    //    return aService;
-    //}
-
-    //public void setCourseService(AttendanceService courseService) {
-    //    this.aService = courseService;
-    //}
-
 }
+
+

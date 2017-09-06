@@ -1,5 +1,7 @@
 package com.rotanareg.skolan.coursePersist;
 
+import com.rotanareg.skolan.AttendanceBean;
+import com.rotanareg.skolan.attendancePersist.AttendanceEntity;
 import com.rotanareg.skolan.registeredUserCoursePersist.*;
 import com.rotanareg.skolan.Role;
 import com.rotanareg.skolan.userPersist.UserEntity;
@@ -16,7 +18,8 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name="selectCourses",query="SELECT a FROM CourseEntity a"),
         @NamedQuery(name="selectAllCourses",query="SELECT c FROM RegisteredUserCourseEntity c"),
-        @NamedQuery(name="selectSomeCourses",query="SELECT t FROM CourseEntity t WHERE LOCATE(:filt,t.courseTitle) >0 ")
+        @NamedQuery(name="selectSomeCourses",query="SELECT t FROM CourseEntity t WHERE LOCATE(:filt,t.courseTitle) >0 "),
+        @NamedQuery(name = "selectCourseById",query = "SELECT i FROM CourseEntity i WHERE i.id = :filt")
 })
 public class CourseEntity {
     
@@ -31,6 +34,9 @@ public class CourseEntity {
 
     @OneToMany(mappedBy="course")
     private List<RegisteredUserCourseEntity> persons;
+
+    @OneToMany
+    private List<AttendanceEntity> attendedStudent;
 
     public CourseEntity() {
     }

@@ -9,10 +9,18 @@ import java.util.List;
 @Local
 public interface UserService {
 
+    // (C)reate
     void addUser(User user);
-    void updateUser(User user);
-    void removeUser(Long id);
+
+    // (R)eade
     User getUser(Long id);
     List<User> getUsers();
-    public List<User> getUserContaining(String filter);
+    List<User> getUserContaining(String filter);
+
+    // (U)pdate
+    void updateUser(User user);
+
+    // (D)elete
+    void removeUser(Long id);
+
 }

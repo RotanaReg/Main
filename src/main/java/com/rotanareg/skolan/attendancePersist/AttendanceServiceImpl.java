@@ -25,93 +25,96 @@ public class AttendanceServiceImpl implements AttendanceService {
     @PersistenceContext
     EntityManager em;
 
-    // (C)reate / add.
     @Override
-    public void addAttendance(AttendanceDomain ad){
-        AttendanceEntity dom = new AttendanceEntity(ad.getDate(), ad.isHasAttended());    // Create the Data Object Model
-        em.persist(dom);
-    }
-
-    // (R)ead / get.
-/*    @Override
-    public AttendanceDomain getAttendance(Long id){
-        Course c = em.find(Course.class, id);
-        return new CourseDomain(c.getId(), c.getName(), c.getCode());
-    }
-
-    // (U)pdate.
-    @Override
-    public void updateAttendance(AttendanceDomain attendance){
-        Course c = em.find(Course.class, course.getId());
-        c.setName(course.getName());
-        c.setCode(course.getCode());
-        em.merge(c);
-
-    }
-
-    // (D)elete.
-    @Override
-    public void deleteAttendance(Long id){
-        Course c = em.find(Course.class, id);
-        em.remove(c);
-    }
-*/
-
-    @Override
-    public List<AttendanceDomain> getAttendances() {
-        /*Query query = em.createQuery("select a from Course a where a.code = :lname and a.name = :fname", Course.class);
-        query.setParameter("lname", "Karlsson");
-        query.setParameter("fname", "Kalle");
-        */
-        /*Query query = em.createQuery("select a from Attendance a where a.code = :lname and a.name = :fname", AttendanceEntity.class);
-        query.setParameter("lname", "Karlsson");
-        query.setParameter("fname", "Kalle");
-        */
-        //List<CourseEntity> courseEntityList = em.createNamedQuery("selectAllCourses").getResultList();
-
-        /*
-        List<AttendanceEntity> courseRecords = query.getResultList();
-        System.out.println("course Size " + courseRecords.size());
-        */
-
-        List<AttendanceEntity> entityList = em.createNamedQuery("selectAll").getResultList();
-        List<AttendanceDomain> domainList = new ArrayList();
-
-/*        return entityList.stream().
-                //map(a -> new AttendanceDomain(a.getId(), a.getDate(), a.isHasAttended())).
-                map(a -> new AttendanceDomain(a.getId(), a.getDate(), a.isHasAttended())).
-                collect(Collectors.toList());
-                */
-        for(AttendanceEntity e: entityList){
-            // TODO: completer below
-            // AttendanceDomain(Long id, CourseEntity eCourse, UserEntity eUser, Date date, boolean hasAttended):
-
-            //******************** Commented, because of missing constructor... **************************
-                  domainList.add(new AttendanceDomain(e.getId(), e.getCourse(), e.getUser(), e.getDate(), e.isHasAttended()));
-            domainList.add(new AttendanceDomain(e.getId(), e.getCourse(), e.getUser(), e.getDate(), e.isHasAttended()));
+    public void addAttendance(AttendanceDomain attendance) {
+        if ((attendance.getCourseId() < 1) || (attendance.getUserId() < 1) || (attendance.getSqlDate() != null)){
+            AttendanceEntity a = new AttendanceEntity(
+                    (UserEntity) em.createNamedQuery("selectUserById").
+                            setParameter("filt", attendance.getUserId()).
+                            getSingleResult(),
+                    (CourseEntity) em.createNamedQuery("selectCourseById").
+                            setParameter("filt", attendance.getCourseId()).
+                            getSingleResult(),
+                    attendance.getSqlDate(),
+                    attendance.isHasAttended());
+            em.persist(a);
         }
-        return domainList; 
     }
-/*
+
     @Override
-    public List<CourseDomain> getCoursesNameContain(String filter) {
+    public List<AttendanceDomain> getAttendanceByUser(Long userId) {
+        // get list for specific user
+        List<AttendanceEntity> attendanceByUser = em.createNamedQuery("selectAttendanceByUserId").setParameter("filt", userId).getResultList();
 
-        List<Course> l = em.createNamedQuery("selectSome").setParameter("filt", filter).getResultList();
-
-        return l.stream().
-                map(p -> new CourseDomain(p.getId(), p.getName(), p.getCode())).
-                collect(Collectors.toList());
-
-    }
-*/
-    public String getCourseCode(Long id) {
-        AttendanceEntity e = em.find(AttendanceEntity.class, id);
-        return e.getCourse().getCourseCode();
-    }
-
-    public String getCourseTitle(Long id) {
-        AttendanceEntity e = em.find(AttendanceEntity.class, id);
-        return e.getCourse().getCourseTitle();
+        // test so the list is not empty
+        if (!attendanceByUser.isEmpty()) {
+            // return new list of AttendanceDomain objects
+            return attendanceByUser.stream().
+                    map(u -> new AttendanceDomain(
+                            u.getId(), u.getUser().getId(), u.getCourse().getId(), u.getSqlDate(), u.isHasAttended())).
+                    collect(Collectors.toList());
+        } else {
+            // If attendanceByUser was empty, return an empty AttendanceDomain List
+            return new ArrayList<AttendanceDomain>();
+        }
     }
 
+    @Override
+    public List<AttendanceDomain> getAttendanceByCourse(Long courseId) {
+        // get list for specific course
+        List<AttendanceEntity> attendanceByCourse = em.createNamedQuery("selectAttendanceByCourseId").setParameter("filt", courseId).getResultList();
+
+        // test so the list is not empty
+        if (!attendanceByCourse.isEmpty()) {
+            // return new list of AttendanceDomain objects
+            return attendanceByCourse.stream().
+                    map(u -> new AttendanceDomain(
+                            u.getId(), u.getUser().getId(), u.getCourse().getId(), u.getSqlDate(), u.isHasAttended())).
+                    collect(Collectors.toList());
+        } else {
+            // If attendanceByCourse was empty, return an empty AttendanceDomain List
+            return new ArrayList<AttendanceDomain>();
+        }
+    }
+
+    @Override
+    public List<AttendanceDomain> getAttendance() {
+        // get list for all courses and users
+        List<AttendanceEntity> attendance = em.createNamedQuery("selectAllAttendance").getResultList();
+
+        // test so the list is not empty
+        if (!attendance.isEmpty()) {
+            // return new list of AttendanceDomain objects
+            return attendance.stream().
+                    map(u -> new AttendanceDomain(
+                            u.getId(), u.getUser().getId(), u.getCourse().getId(), u.getSqlDate(), u.isHasAttended())).
+                    collect(Collectors.toList());
+        } else {
+            // If attendance was empty, return an empty AttendanceDomain List
+            return new ArrayList<AttendanceDomain>();
+        }
+    }
+
+    @Override
+    public void updateAttendance(AttendanceDomain attendance) {
+        // Find Attendance to be updated
+        AttendanceEntity attendanceEntity = em.find(AttendanceEntity.class,attendance.getId());
+
+        // Update values
+        attendanceEntity.setCourse(em.find(CourseEntity.class,attendance.getCourseId()));
+        attendanceEntity.setUser(em.find(UserEntity.class,attendance.getUserId()));
+        attendanceEntity.setSqlDate(attendance.getSqlDate());
+        attendanceEntity.setHasAttended(attendance.isHasAttended());
+
+        // Update attendance
+        em.merge(attendanceEntity);
+
+    }
+
+    @Override
+    public void removeAttendance(Long attendanceId) {
+        // Find attendance to be removed
+        AttendanceEntity attendanceEntity = em.find(AttendanceEntity.class,attendanceId);
+        em.remove(attendanceEntity);
+    }
 }
