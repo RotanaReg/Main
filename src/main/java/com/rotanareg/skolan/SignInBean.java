@@ -37,7 +37,6 @@ public class SignInBean {
                 return this.currentUser.getRole().toString();
             }
         }
-        System.out.println(user.size() + " FALSE !@#$% Penis");
         return "false";
     }
 

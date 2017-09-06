@@ -18,10 +18,13 @@
                     <h:inputText id="courseTitle" value="#{coursesBean.courseTitle}" size="20"/>
 
                     <h:outputLabel for="courseCode">Kurs nummer</h:outputLabel>
-                    <h:inputSecret id="courseCode" value="#{coursesBean.courseCode}" size="10"/>
+                    <h:inputText id="courseCode" value="#{coursesBean.courseCode}" size="10"/>
 
                     <h:outputLabel for="description">Beskrivning</h:outputLabel>
                     <h:inputTextarea id="description" value="#{coursesBean.description}" size="30"/>
+
+                    <h:outputText value=""/>
+                    <h:commandButton value="Submit" action="#{coursesBean.addCourse}"/>
                 </h:panelGrid>
             </h:form>
 

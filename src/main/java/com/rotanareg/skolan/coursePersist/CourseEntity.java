@@ -16,7 +16,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name="selectCourses",query="SELECT a FROM CourseEntity a"),
         @NamedQuery(name="selectAllCourses",query="SELECT c FROM RegisteredUserCourseEntity c"),
-        //@NamedQuery(name="selectSomeCourses",query="SELECT t FROM RegisteredUserCourseEntity t WHERE LOCATE(:filt,t.courseTitle) >0 ")
+        @NamedQuery(name="selectSomeCourses",query="SELECT t FROM CourseEntity t WHERE LOCATE(:filt,t.courseTitle) >0 ")
 })
 public class CourseEntity {
     
@@ -76,6 +76,7 @@ public class CourseEntity {
     public List<RegisteredUserCourseEntity> getPersons() {
         return persons;
     }
+
     public void addPerson (UserEntity person, boolean isTeacher) {
         RegisteredUserCourseEntity courseUserAssociation = new RegisteredUserCourseEntity();
         if (person.getRole() == Role.ADMIN) {

@@ -19,9 +19,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void addUser(User user) {
-        UserEntity u = new UserEntity(user.getName(),user.getLastName(),user.getRole(),user.getPassWord());
-        em.persist(u);
-
+        if (!user.getName().isEmpty() || !user.getLastName().isEmpty() || !user.getPassWord().isEmpty() || user.getRole() != null) {
+            UserEntity u = new UserEntity(user.getName(), user.getLastName(), user.getRole(), user.getPassWord());
+            em.persist(u);
+        }
     }
 
     @Override

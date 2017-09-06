@@ -16,8 +16,12 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public void addCourse(Course course) {
-        CourseEntity c = new CourseEntity(course.getCourseTitle(),course.getDescription(),course.getCourseCode());
-        em.persist(c);
+
+            if (!course.getCourseTitle().isEmpty() || !course.getCourseCode().isEmpty() || !course.getDescription().isEmpty()) {
+                CourseEntity c = new CourseEntity(course.getCourseTitle(), course.getDescription(), course.getCourseCode());
+                em.persist(c);
+            }
+
 
     }
 
