@@ -10,10 +10,6 @@ import javax.persistence.Query;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by Solidbeans on 2017-03-20.
- */
-
 @Stateless
 public class RegisteredUserCourseServiceImpl implements RegisteredUserCourseService{
     @PersistenceContext

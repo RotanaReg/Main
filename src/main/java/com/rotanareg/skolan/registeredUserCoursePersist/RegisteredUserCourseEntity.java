@@ -7,29 +7,34 @@ import com.rotanareg.skolan.userPersist.UserEntity;
 
 import javax.persistence.*;
 
-/**
- * Created by Nils Gerstner on 2017-08-31.
- */
 
 @Entity
-@Table(name="COURSE_USER")
+//@Table(name="COURSE_USER")
+@Table(name="REG_COURSE_USER")
 @IdClass(RegisteredUserCourseId.class)
 public class RegisteredUserCourseEntity {
 
     @Id
     private long courseId;
+
     @Id
     private long personId;
 
-    @Column(name="IS_TEACHER")
+    @Column(name="IS_TEACHER")  // Om användaren är en elev.
     private boolean isTeacher;
+
+    @Column(name="IS_BOOKED")   // True när elev registrerat/gjort_instresse-anmälan för en kurs.
+    private boolean isBooked;
+
+    @Column(name="IS_ASSIGNED")
+    private boolean isAssigned; // True när Admin anslutit en elev/lärare.
 
     @ManyToOne
     @PrimaryKeyJoinColumn(name="COURSEID", referencedColumnName = "ID")
     private CourseEntity course;
+
     @ManyToOne
     @PrimaryKeyJoinColumn(name="PERSONID", referencedColumnName = "ID")
-
     private UserEntity person;
 
     public long getCourseId() {
@@ -54,6 +59,22 @@ public class RegisteredUserCourseEntity {
 
     public void setTeacher(boolean teacher) {
         isTeacher = teacher;
+    }
+
+    public boolean isAssigned() {
+        return isAssigned;
+    }
+
+    public void setAssigned(boolean assigned) {
+        isAssigned = assigned;
+    }
+
+    public boolean isBooked() {
+        return isBooked;
+    }
+
+    public void setBooked(boolean booked) {
+        isBooked = booked;
     }
 
     public CourseEntity getCourse() {

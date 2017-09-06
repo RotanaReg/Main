@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="templates/template_page.xhtml">
+    <ui:param name="pageTitle" value="Admin sidan"/>
+
+
+    <ui:define name="panel-top">
+        <section>
+        </section>
+    </ui:define>
+
+
+    <ui:define name="panel-main">
+        <section>
+            <h1>Ansluta lärare och elever till kurser</h1>
+
+            ---marko jobbar på Ansluta lärare och elever till kurser...---<br/><br/>
+
+
+            <h:outputText value="Alla rader:"/>
+            <h:dataTable id="tbl1" value="#{attendanceBean.attendances}" var="aBean">
+                <h:column >
+                    <f:facet name="header">--Id--</f:facet>
+                    <h:outputText id="id" value="#{aBean.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Kurs nr</f:facet>
+                    <h:outputText id="course-nr" value="#{aBean.courseNr}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Kursnamn</f:facet>
+                    <h:outputText id="course-name" value="#{aBean.courseName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Elev</f:facet>
+                    <h:outputText id="student-name" value="#{aBean.userNameFull}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Datum</f:facet>
+                    <h:outputText id="date" value="#{aBean.date}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Närvaro</f:facet>
+                    <h:outputText id="attendance" value="#{aBean.hasAttended}"/>
+                </h:column>
+            </h:dataTable>
+
+        </section>
+    </ui:define>
+</ui:composition>
+
+
+</html>

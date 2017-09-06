@@ -2,9 +2,7 @@ package com.rotanareg.skolan.registeredUserCoursePersist;
 
 import java.io.Serializable;
 
-/**
- * Created by Nils Gerstner on 2017-08-31.
- */
+
 public class RegisteredUserCourseId implements Serializable {
     private long personId;
     private long courseId;
