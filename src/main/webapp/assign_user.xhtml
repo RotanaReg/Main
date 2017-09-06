@@ -18,10 +18,35 @@
 
     <ui:define name="panel-main">
         <section>
-            <h1>Ansluta lärare och elever till kurser</h1>
+            <h1>Anslut lärare eller elev till en kurs</h1>
 
             ---marko jobbar på Ansluta lärare och elever till kurser...---<br/><br/>
 
+            <section class="course_details">
+                <h:form>
+                    <h:panelGrid columns="2" styleClass="form-grid" columnClasses="form-column-label,form-column-input">
+                        <h:outputLabel for="userId">Elev #id:</h:outputLabel>
+                        <h:inputText id="userId" value="#{coursesBean.courseTitle}" size="5"/>
+
+                        <ui:remove>TODO: Söka på user och få ut userId</ui:remove>
+
+                        <h:outputLabel for="courseId">Kurs #id:</h:outputLabel>
+                        <h:inputText id="courseId" value="#{coursesBean.courseCode}" size="5"/>
+
+                        <ui:remove>TODO: Söka på kurs och få ut courseId</ui:remove>
+
+                        <h:outputLabel for="assign">Anslut:</h:outputLabel>
+                        <h:selectBooleanCheckbox id="assign" value="#{coursesBean.description}" size="30"/>
+
+                        <br/>
+
+                        <h:outputText value=""/>
+                        <h:commandButton value="Utför" action="#{coursesBean.addCourse}"/>
+                    </h:panelGrid>
+                </h:form>
+            </section>
+
+            <br/>
 
             <h:outputText value="Alla rader:"/>
             <h:dataTable id="tbl1" value="#{attendanceBean.attendances}" var="aBean">

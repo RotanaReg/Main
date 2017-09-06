@@ -20,14 +20,14 @@ public class RegisteredUserCourseEntity {
     @Id
     private long personId;
 
-    @Column(name="IS_TEACHER")  // Om användaren är en elev.
-    private boolean isTeacher;
-
     @Column(name="IS_BOOKED")   // True när elev registrerat/gjort_instresse-anmälan för en kurs.
     private boolean isBooked;
 
     @Column(name="IS_ASSIGNED")
     private boolean isAssigned; // True när Admin anslutit en elev/lärare.
+
+	@Column(name="IS_TEACHER")  // Om användaren är en elev.
+    private boolean isTeacher;
 
     @ManyToOne
     @PrimaryKeyJoinColumn(name="COURSEID", referencedColumnName = "ID")
