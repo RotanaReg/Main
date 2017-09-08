@@ -1,49 +1,129 @@
 package com.rotanareg.skolan.domains;
 
-/**
- * Created by Solidbeans on 2017-03-20.
- */
+
+
 public class RegisteredUserCourseDomain {
-    private long courseId;
-    private long personId;
-    private boolean isTeacher;
 
-    /*
-    public PersonDomain(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-    */
-/*
-    public RegisteredUserCourseDomain(long id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-*/
-    /*
-    public long getId() {
-        return id;
+    private Long userId;
+
+    private Long courseId;
+
+    private Boolean isBooked;   // True när elev registrerat/gjort_instresse-anmälan för en kurs.
+
+    private Boolean isAssigned; // True när Admin anslutit en elev/lärare.
+
+    private Boolean isTeacher;  // Om användaren är en elev.
+
+
+
+    public RegisteredUserCourseDomain(boolean isBooked, boolean isAssigned) {
+
+        this(null, null, isBooked, isAssigned, null);
+
     }
 
-    public void setId(long id) {
-        this.id = id;
+
+
+    public RegisteredUserCourseDomain(boolean isBooked, boolean isAssigned, boolean isTeacher) {
+
+        this(null, null, isBooked, isAssigned, isTeacher);
+
     }
 
-    public String getFirstName() {
-        return firstName;
+
+
+    public RegisteredUserCourseDomain(Long userId, Long courseId, Boolean isBooked, Boolean isAssigned, Boolean isTeacher) {
+
+        this.userId = userId;
+
+        this.courseId = courseId;
+
+        this.isBooked = isBooked;
+
+        this.isAssigned = isAssigned;
+
+        this.isTeacher = isTeacher;
+
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+
+
+    public long getUserId() {
+
+        return userId;
+
     }
 
-    public String getLastName() {
-        return lastName;
+
+
+    public void setUserId(long userId) {
+
+        this.userId = userId;
+
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+
+
+    public long getCourseId() {
+
+        return courseId;
+
     }
-    */
+
+
+
+    public void setCourseId(long courseId) {
+
+        this.courseId = courseId;
+
+    }
+
+
+
+    public boolean isBooked() {
+
+        return isBooked;
+
+    }
+
+
+
+    public void setBooked(boolean booked) {
+
+        isBooked = booked;
+
+    }
+
+
+
+    public boolean isAssigned() {
+
+        return isAssigned;
+
+    }
+
+
+
+    public void setAssigned(boolean assigned) {
+
+        isAssigned = assigned;
+
+    }
+
+
+
+    public boolean isTeacher() {
+
+        return isTeacher;
+
+    }
+
+
+
+    public void setTeacher(boolean teacher) {
+
+        isTeacher = teacher;
+
+    }
+
 }

@@ -1,16 +1,12 @@
-package com.rotanareg.skolan.registeredUserCoursePersist;
+package com.rotanareg.skolan.registeredUserCoursePersist;import com.rotanareg.skolan.domains.*;
 
 import javax.ejb.Local;
-import java.util.List;
+import java.util.List;@Local
 
-@Local
 public interface RegisteredUserCourseService {
-    /*
-    void addPerson(PersonDomain person);
-    void updatePerson(PersonDomain person);
-    PersonDomain getPerson(Long id);
-    void removePerson(Long id);
-    List<PersonDomain> getPersons();
-    public List<PersonDomain> getPersonsFirtsNameContain(String filter) ;
-    */
+    List<RegisteredUserCourseDomain> getRegisteredUserCourses();
+
+    List<RegisteredUserCourseDomain> byUserId(Long userId);
+
+    List<RegisteredUserCourseDomain> byCourseId(Long courseId);
 }

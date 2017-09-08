@@ -1,76 +1,65 @@
 package com.rotanareg.skolan.registeredUserCoursePersist;
 
-import javax.ejb.Stateful;
+import com.rotanareg.skolan.coursePersist.CourseServiceImpl;
+import com.rotanareg.skolan.domains.Course;
+import com.rotanareg.skolan.domains.RegisteredUserCourseDomain;
+import com.rotanareg.skolan.domains.User;
+import com.rotanareg.skolan.userPersist.UserServiceImpl;
+
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Stateless
-public class RegisteredUserCourseServiceImpl implements RegisteredUserCourseService{
+public class RegisteredUserCourseServiceImpl implements RegisteredUserCourseService {
     @PersistenceContext
     EntityManager em;
 
-    /*
-    @Override
-    public void addPerson(PersonDomain person) {
-        Person p = new Person(person.getFirstName(),person.getLastName());
-        em.persist(p);
+    List<RegisteredUserCourseDomain> rucd;
+
+    private List<RegisteredUserCourseDomain> populateList() {
+        if (rucd.isEmpty()) {
+            rucd = new ArrayList<>();
+            List<Course> courses = new CourseServiceImpl().getCourses();
+            List<User> users = new UserServiceImpl().getUsers();
+            new UserServiceImpl().getUsers();
+            for (Course c : courses) {
+                for (User u : users) {
+                    RegisteredUserCourseDomain ruc = new RegisteredUserCourseDomain(u.getId(), c.getId(), true, new Random().nextBoolean(), false);
+                    rucd.add(ruc);
+                }
+            }
+        }
+        return rucd;
     }
 
     @Override
-    public void updatePerson(PersonDomain person) {
-        Person p = em.find(Person.class,person.getId());
-        p.setFirstName(person.getFirstName());
-        p.setLastName(person.getLastName());
-        em.merge(p);
+    public List<RegisteredUserCourseDomain> getRegisteredUserCourses() {
 
+        return populateList();
     }
 
     @Override
-    public PersonDomain getPerson(Long id) {
-        Person p = em.find(Person.class,id);
-        return new PersonDomain(p.getId(),p.getFirstName(),p.getLastName());
+    public List<RegisteredUserCourseDomain> byUserId(Long userId) {
+        // return a list of RegisteredUserCourses for one user
+        List<RegisteredUserCourseDomain> reguc = new ArrayList<>();
+        for (RegisteredUserCourseDomain r : populateList())
+            if (r.getUserId()==userId)
+                reguc.add(r);
+        return reguc;
     }
 
     @Override
-    public void removePerson(Long id) {
-        Person p = em.find(Person.class,id);
-        em.remove(p);
+    public List<RegisteredUserCourseDomain> byCourseId(Long courseId) {
+        // return a list of RegisteredUserCourses for one course
+        List<RegisteredUserCourseDomain> reguc = new ArrayList<>();
+        for (RegisteredUserCourseDomain r : populateList())
+            if (r.getCourseId()==courseId)
+                reguc.add(r);
+        return reguc;
     }
-    */
-
-    /*
-    @Override
-    public List<PersonDomain> getPersons() {
-        Query query = em.createQuery("select a from Person a where a.lastName = :lname and a.firstName = :fname", Person.class);
-        query.setParameter("lname", "Karlsson");
-        query.setParameter("fname", "Kalle");
-
-        List<Person> personRecords = query.getResultList();
-        System.out.println("person Size " + personRecords.size()) ;
-
-        List<Person> l = em.createNamedQuery("selectAll").getResultList();
-
-        return l.stream().
-                map(p->new PersonDomain(p.getId(),p.getFirstName(),p.getLastName())).
-                collect(Collectors.toList());
-    }
-
-    @Override
-    public List<PersonDomain> getPersonsFirtsNameContain(String filter) {
-
-        List<Person> l = em.createNamedQuery("selectSome").setParameter("filt",filter).getResultList();
-
-        return l.stream().
-                map(p->new PersonDomain(p.getId(),p.getFirstName(),p.getLastName())).
-                collect(Collectors.toList());
-
-    }
-    */
-
 }
