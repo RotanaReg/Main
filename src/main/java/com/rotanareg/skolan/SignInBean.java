@@ -9,9 +9,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.util.List;
 
-/**
- * Created by Nils Gerstner on 2017-09-04.
- */
 
 @ManagedBean
 @SessionScoped
@@ -20,6 +17,7 @@ public class SignInBean {
     private String userName;
     private String userPassword;
     private User currentUser = null;
+
     @Inject
     private UserService userService;
 
@@ -70,5 +68,13 @@ public class SignInBean {
             return true;
         else
             return false;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 }

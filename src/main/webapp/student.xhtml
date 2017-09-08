@@ -15,6 +15,7 @@
                 <h:form>
                     <h1>Välkommen #{signInBean.userName}!</h1>
                     <p>  <h:commandLink action="#{signInBean.logOut}">Logga ut</h:commandLink></p>
+                    <h:outputLink value="student_stat.xhtml">Närvaro</h:outputLink><br/>
                 </h:form>
             </ui:fragment>
             <h:form>
