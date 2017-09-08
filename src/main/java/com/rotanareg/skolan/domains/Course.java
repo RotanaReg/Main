@@ -16,6 +16,7 @@ public class Course implements Serializable{
     private String courseCode;
     private List<RegisteredUserCourseEntity> persons;
 
+
     public Course(String courseTitle, String description, String courseCode){
         this.courseTitle = courseTitle;
         this.description = description;

@@ -32,6 +32,11 @@ public class CoursesBean {
         return "course";
     }
 
+    public String removeCourse(Long id){
+        courseService.removeCourse(id);
+        return "course";
+
+    }
     public Long getId() {
         return id;
     }
