@@ -33,7 +33,7 @@ public class CourseEntity {
     private String courseCode;
 
     @OneToMany(mappedBy="course")
-    private List<RegisteredUserCourseEntity> persons;
+    private List<RegisteredUserCourseEntity> users;
 
     @OneToMany
     private List<AttendanceEntity> attendedStudent;
@@ -79,26 +79,26 @@ public class CourseEntity {
         this.courseCode = courseCode;
     }
 
-    public List<RegisteredUserCourseEntity> getPersons() {
-        return persons;
+    public List<RegisteredUserCourseEntity> getUsers() {
+        return users;
     }
 
-    public void addPerson (UserEntity person, boolean isTeacher) {
-        RegisteredUserCourseEntity courseUserAssociation = new RegisteredUserCourseEntity();
-        if (person.getRole() == Role.ADMIN) {
+    public void addPerson (UserEntity user, boolean isTeacher) {
+        RegisteredUserCourseEntity entity = new RegisteredUserCourseEntity();
+        if (user.getRole() == Role.ADMIN) {
             System.out.println("Nor TEACHER or STUDENT; not added!");
         } else {
-            if (isTeacher && person.getRole() == Role.TEACHER)
-                courseUserAssociation.setTeacher(true);
-            else if (!isTeacher && person.getRole() != Role.STUDENT)
-                courseUserAssociation.setTeacher(false);
-            courseUserAssociation.setPerson(person);
-            courseUserAssociation.setCourse(this);
-            courseUserAssociation.setPersonId(person.getId());
-            courseUserAssociation.setCourseId(this.getId());
-            if (this.persons == null)
-                this.persons = new ArrayList<>();
-            this.persons.add(courseUserAssociation);
+            if (isTeacher && user.getRole() == Role.TEACHER)
+                entity.setTeacher(true);
+            else if (!isTeacher && user.getRole() != Role.STUDENT)
+                entity.setTeacher(false);
+            entity.setUser(user);
+            entity.setCourse(this);
+            entity.setUserId(user.getId());
+            entity.setCourseId(this.getId());
+            if (this.users == null)
+                this.users = new ArrayList<>();
+            this.users.add(entity);
         }
     }
 

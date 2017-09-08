@@ -48,31 +48,38 @@
 
             <br/>
 
-            <h:outputText value="Alla rader:"/>
-            <h:dataTable id="tbl1" value="#{attendanceBean.attendances}" var="aBean">
+            <h:outputText value="Alla rader i :"/>
+
+            <h:dataTable id="tbl1" value="#{registeredUserCourseBean.registeredUserCourses}" var="aBean">
                 <h:column >
                     <f:facet name="header">--Id--</f:facet>
                     <h:outputText id="id" value="#{aBean.id}"/>
                 </h:column>
-                <h:column>
-                    <f:facet name="header">Kurs nr</f:facet>
-                    <h:outputText id="course-nr" value="#{aBean.courseNr}"/>
+                <h:column >
+                    <f:facet name="header">--UserId--</f:facet>
+                    <h:outputText id="user_id" value="#{aBean.userId}"/>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Kursnamn</f:facet>
-                    <h:outputText id="course-name" value="#{aBean.courseName}"/>
+                    <f:facet name="header">--CourseId--</f:facet>
+                    <h:outputText id="course_id" value="#{aBean.courseId}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Namn:</f:facet>
+                    <h:outputText value="#{aBean.userNameFull}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Elev registrerat:</f:facet>
+                    <h:selectBooleanCheckbox value="#{aBean.booked}"/>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Elev</f:facet>
-                    <h:outputText id="student-name" value="#{aBean.userNameFull}"/>
+                    <f:facet name="header">Admin anslutit:</f:facet>
+                    <h:selectBooleanCheckbox value="#{aBean.assigned}"/>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Datum</f:facet>
-                    <h:outputText id="date" value="#{aBean.date}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Närvaro</f:facet>
-                    <h:outputText id="attendance" value="#{aBean.hasAttended}"/>
+                    <f:facet name="header">Är lärare:</f:facet>
+                    <h:selectBooleanCheckbox value="#{aBean.teacher}"/>
                 </h:column>
             </h:dataTable>
 

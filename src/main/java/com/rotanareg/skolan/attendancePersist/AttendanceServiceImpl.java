@@ -17,9 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by Marko K. Seppänen.
- */
 @Stateless
 public class AttendanceServiceImpl implements AttendanceService {
     @PersistenceContext
@@ -88,7 +85,7 @@ public class AttendanceServiceImpl implements AttendanceService {
             return attendance.stream().
                     map(u -> new AttendanceDomain(
                             u.getId(), u.getUser().getId(), u.getCourse().getId(), u.getSqlDate(), u.isHasAttended())).
-                    collect(Collectors.toList());
+                            collect(Collectors.toList());
         } else {
             // If attendance was empty, return an empty AttendanceDomain List
             return new ArrayList<AttendanceDomain>();

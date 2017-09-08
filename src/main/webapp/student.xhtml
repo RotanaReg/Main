@@ -14,44 +14,28 @@
             <ui:fragment rendered="#{signInBean.loggedIn}">
                 <h:form>
                     <h1>Välkommen #{signInBean.userName}!</h1>
+
                     <p>  <h:commandLink action="#{signInBean.logOut}">Logga ut</h:commandLink></p>
-                    <h:outputLink value="student_stat.xhtml">Närvaro</h:outputLink><br/>
                 </h:form>
             </ui:fragment>
-            <h:form>
-                <h:dataTable value="#{coursesBean.courses.courses}" var="newCourse">
-                    <h:column>
-                        <h1>#{newCourse.courseTitle}</h1>
-                        #{newCourse.description}
-                    </h:column>
-                    <h:column>
-                        <h:commandButton value="Registrera" action="#{coursesBean.addCourse}"/>
-                    </h:column>
-                </h:dataTable>
-            </h:form>
         </section>
     </ui:define>
 
-        <ui:define name="panel-main">
-            <h:dataTable value="#{userBean.users.users}" var="myUser">
-                <h:column>
-                    #{myUser.name} #{myUser.role.toString()}
-                </h:column>
-            </h:dataTable>
-            <section>
-                <h:form>
-                    <h:dataTable value="#{coursesBean.courses.courses}" var="myCourse">
-                        <h:column>
-                            <h1>#{myCourse.courseTitle}</h1>
-                            #{myCourse.description}
-                        </h:column>
-                        <h:column>
-                            <h:commandButton value="Avregistrera" action="#{coursesBean.removeCourse}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:form>
-            </section>
-        </ui:define>
+    <ui:define name="panel-main">
+        <h:dataTable value="#{userBean.users.users}" var="myUser">
+        <h:column>
+        #{myUser.name} #{myUser.role.toString()}
+        </h:column>
+        </h:dataTable>
+    <section>
+        <h:dataTable value="#{coursesBean.courses.courses}" var="myCourse">
+            <h:column>
+                <h1>#{myCourse.courseTitle}</h1>
+                #{myCourse.description}
+            </h:column>
+        </h:dataTable>
+    </section>
+    </ui:define>
     </ui:composition>
 
 </html>

@@ -10,7 +10,6 @@ import com.rotanareg.skolan.coursePersist.CourseEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 @Table(name = "Person")
 @NamedQueries({
@@ -29,7 +28,7 @@ public class UserEntity {
     private String lastName;
     private String passWord;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "user")
     private List<RegisteredUserCourseEntity> courses;
 
     @OneToMany
@@ -91,21 +90,21 @@ public class UserEntity {
     }
 
     public void addCourse (CourseEntity course, boolean isTeacher) {
-        RegisteredUserCourseEntity courseUserAssociation = new RegisteredUserCourseEntity();
+        RegisteredUserCourseEntity entity = new RegisteredUserCourseEntity();
         if (this.getRole() == Role.ADMIN) {
             System.out.println("Nor TEACHER or STUDENT; not added!");
         } else {
             if (isTeacher && this.getRole() == Role.TEACHER)
-                courseUserAssociation.setTeacher(true);
+                entity.setTeacher(true);
             else if (!isTeacher && this.getRole() != Role.STUDENT)
-                courseUserAssociation.setTeacher(false);
-            courseUserAssociation.setPerson(this);
-            courseUserAssociation.setCourse(course);
-            courseUserAssociation.setPersonId(this.getId());
-            courseUserAssociation.setCourseId(course.getId());
+                entity.setTeacher(false);
+            entity.setUser(this);
+            entity.setCourse(course);
+            entity.setUserId(this.getId());
+            entity.setCourseId(course.getId());
             if (this.courses == null)
                 this.courses = new ArrayList<>();
-            this.courses.add(courseUserAssociation);
+            this.courses.add(entity);
         }
     }
 }

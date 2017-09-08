@@ -6,36 +6,50 @@ import com.rotanareg.skolan.coursePersist.CourseEntity;
 import com.rotanareg.skolan.userPersist.UserEntity;
 
 import javax.persistence.*;
-
+//import javax.jdo.annotations.Unique;
 
 @Entity
 //@Table(name="COURSE_USER")
-@Table(name="REG_COURSE_USER")
+@Table(name="REG_COURSE_USER",
+        uniqueConstraints={@UniqueConstraint(columnNames = {"ID"})})
 @IdClass(RegisteredUserCourseId.class)
+@NamedQueries({
+        @NamedQuery(name = "selectAllRegisteredUserCourse", query = "SELECT p FROM RegisteredUserCourseEntity p")})
 public class RegisteredUserCourseEntity {
+    //@UniqueConstraint(id)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Id
     private long courseId;
 
     @Id
-    private long personId;
+    private long userId;
 
-    @Column(name="IS_BOOKED")   // True när elev registrerat/gjort_instresse-anmälan för en kurs.
-    private boolean isBooked;
+    @Column(name="IS_BOOKED")
+    private boolean isBooked;   // True när elev registrerat/gjort_instresse-anmälan för en kurs.
 
     @Column(name="IS_ASSIGNED")
     private boolean isAssigned; // True när Admin anslutit en elev/lärare.
 
-	@Column(name="IS_TEACHER")  // Om användaren är en elev.
-    private boolean isTeacher;
+	@Column(name="IS_TEACHER")
+    private boolean isTeacher;  // Om användaren är en elev.
 
     @ManyToOne
     @PrimaryKeyJoinColumn(name="COURSEID", referencedColumnName = "ID")
     private CourseEntity course;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn(name="PERSONID", referencedColumnName = "ID")
-    private UserEntity person;
+    @PrimaryKeyJoinColumn(name="USERID", referencedColumnName = "ID")
+    private UserEntity user;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public long getCourseId() {
         return courseId;
@@ -45,12 +59,12 @@ public class RegisteredUserCourseEntity {
         this.courseId = courseId;
     }
 
-    public long getPersonId() {
-        return personId;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setPersonId(Long personId) {
-        this.personId = personId;
+    public void setUserId(Long personId) {
+        this.userId = userId;
     }
 
     public boolean isTeacher() {
@@ -86,11 +100,11 @@ public class RegisteredUserCourseEntity {
     }
 
     public UserEntity getPerson() {
-        return person;
+        return user;
     }
 
-    public void setPerson(UserEntity person) {
-        this.person = person;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 }
 

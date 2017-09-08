@@ -29,7 +29,7 @@ public class RegisteredUserCourseServiceImpl implements RegisteredUserCourseServ
             new UserServiceImpl().getUsers();
             for (Course c : courses) {
                 for (User u : users) {
-                    RegisteredUserCourseDomain ruc = new RegisteredUserCourseDomain(u.getId(), c.getId(), true, new Random().nextBoolean(), false);
+                    RegisteredUserCourseDomain ruc = new RegisteredUserCourseDomain(u.getId(), u.getId(), c.getId(), true, new Random().nextBoolean(), null, null, null);
                     rucd.add(ruc);
                 }
             }
@@ -37,10 +37,41 @@ public class RegisteredUserCourseServiceImpl implements RegisteredUserCourseServ
         return rucd;
     }
 
+        /*
+    @Override
+    public List<AttendanceDomain> getAttendance() {
+        // get list for all courses and users
+        List<AttendanceEntity> attendance = em.createNamedQuery("selectAllAttendance").getResultList();
+
+        // test so the list is not empty
+        if (!attendance.isEmpty()) {
+            // return new list of AttendanceDomain objects
+            return attendance.stream().
+                    map(u -> new AttendanceDomain(
+                            u.getId(), u.getUser().getId(), u.getCourse().getId(), u.getSqlDate(), u.isHasAttended())).
+                    collect(Collectors.toList());
+        } else {
+            // If attendance was empty, return an empty AttendanceDomain List
+            return new ArrayList<AttendanceDomain>();
+        }
+    }
+    */
+
     @Override
     public List<RegisteredUserCourseDomain> getRegisteredUserCourses() {
+        //return populateList();
+        List<RegisteredUserCourseEntity> entityList = em.createNamedQuery("selectAllRegisteredUserCourse").getResultList();
 
-        return populateList();
+        // test so the list is not empty
+        if (!entityList.isEmpty()) {
+            return entityList.stream().
+                    map(u -> new RegisteredUserCourseDomain(
+                            //RegisteredUserCourseDomain(Long id, Long userId, Long courseId, Boolean isBooked, Boolean isAssigned, Boolean isTeacher)
+                            u.getId(), u.getUserId(), u.getCourseId(), u.isBooked(), u.isAssigned(), u.isTeacher(), u.getPerson(), u.getCourse())).
+                            collect(Collectors.toList());
+        }
+
+        return new ArrayList<RegisteredUserCourseDomain>();
     }
 
     @Override
