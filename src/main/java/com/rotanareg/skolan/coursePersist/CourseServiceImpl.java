@@ -60,7 +60,7 @@ public class CourseServiceImpl implements CourseService{
                    "Utbildningen är individualiserad och innan antagning sker en intestning. Du kan delta i utbildningen även om du inte har avslutat din Svenska för invandrare, SFI. Korta vägen pågår i 25 veckor och därutöver ingår 5 veckors praktik. Utbildningen utförs av Folkuniversitetet i Umeå i samarbete med Umeå universitet. Det finns möjlighet till individuell förlängning.",
                    "Sv234B");
            em.persist(b);
-           CourseEntity c = new CourseEntity("allmän datakunskap",
+           CourseEntity c = new CourseEntity("Allmän datakunskap",
                    "Kom igång och lär dig data från början. Folkuniversitetet är en erfaren data- och IT-utbildare. Vi har kurser för både nybörjare och erfarna dataanvändare, för juniorer såväl som seniorer och inom både allmän datakunskap och enskilda datorprogram.",
                    "DK234C");
            em.persist(c);
