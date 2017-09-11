@@ -16,6 +16,10 @@ public class RegisteredUserCourseDomain {
     private UserEntity user;
     private CourseEntity course;
 
+    public RegisteredUserCourseDomain(){
+        ;
+    }
+
     public RegisteredUserCourseDomain(boolean isBooked, boolean isAssigned) {
         this(null, null, null, isBooked, isAssigned, null, null, null);
     }
@@ -28,6 +32,18 @@ public class RegisteredUserCourseDomain {
     //public RegisteredUserCourseDomain(Long id, Long userId, Long courseId, Boolean isBooked, Boolean isAssigned, Boolean isTeacher) {
     //    this(null, null, null, isBooked, isAssigned, isTeacher, null, null);
     //}
+
+    //public RegisteredUserCourseDomain(Boolean isAssigned, Boolean isTeacher, UserEntity user, CourseEntity course) {
+    //    this(null, null, null, null, isAssigned, isTeacher, user, course);
+    //}
+
+    public RegisteredUserCourseDomain(Long userId, Long courseId, Boolean isBooked, Boolean isAssigned, Boolean isTeacher, UserEntity user, CourseEntity course) {
+        this(null, userId, courseId, isBooked, isAssigned, isTeacher, user, course);
+    }
+
+    public RegisteredUserCourseDomain(Long id, Boolean isBooked, Boolean isAssigned, Boolean isTeacher, UserEntity user, CourseEntity course) {
+        this(id, null, null, isBooked, isAssigned, isTeacher, user, course);
+    }
 
     public RegisteredUserCourseDomain(Long id, Long userId, Long courseId, Boolean isBooked, Boolean isAssigned, Boolean isTeacher, UserEntity user, CourseEntity course) {
         this.id = id;
@@ -64,15 +80,32 @@ public class RegisteredUserCourseDomain {
         this.courseId = courseId;
     }
 
-    public boolean isBooked() {
+    public Boolean getBooked() {
         return isBooked;
     }
 
-    public void setBooked(boolean booked) {
-        isBooked = booked;
+    public Boolean getAssigned() {
+        return isAssigned;
     }
 
-    public boolean isAssigned() {
+    public Boolean getTeacher() {
+        return isTeacher;
+    }
+
+    public Boolean isBooked() {
+        if (isBooked == null)
+            isBooked = false;
+        return isBooked;
+    }
+
+    public void setBooked(Boolean booked) {
+        isBooked = booked;
+    }
+    public void setBooked(boolean booked) {
+        isBooked = new Boolean(booked);
+    }
+
+    public Boolean isAssigned() {
         return isAssigned;
     }
 
@@ -80,12 +113,15 @@ public class RegisteredUserCourseDomain {
         isAssigned = assigned;
     }
 
-    public Boolean getTeacher() {
+    public Boolean isTeacher() {
         return isTeacher;
     }
 
     public void setTeacher(Boolean teacher) {
         isTeacher = teacher;
+    }
+    public void setTeacher(boolean teacher) {
+        isTeacher = new Boolean(teacher);
     }
 
     public UserEntity getUser() {

@@ -9,9 +9,9 @@ public interface RegisteredUserCourseService {
     List<RegisteredUserCourseDomain> getRegisteredUserCourses();
     List<RegisteredUserCourseDomain> byUserId(Long userId);
     List<RegisteredUserCourseDomain> byCourseId(Long courseId);
+    void addItem(RegisteredUserCourseDomain domain);
+    void updateItem(RegisteredUserCourseDomain domain);
     /*
-    void addPerson(PersonDomain person);
-    void updatePerson(PersonDomain person);
     PersonDomain getPerson(Long id);
     void removePerson(Long id);
     List<PersonDomain> getPersons();

@@ -43,6 +43,20 @@ public class RegisteredUserCourseEntity {
     @PrimaryKeyJoinColumn(name="USERID", referencedColumnName = "ID")
     private UserEntity user;
 
+    public RegisteredUserCourseEntity(){
+        ;
+    }
+
+    public RegisteredUserCourseEntity(Long userId, Long courseId, Boolean isBooked, Boolean isAssigned, Boolean isTeacher, UserEntity user, CourseEntity course) {
+        this.userId = userId;
+        this.courseId = courseId;
+        this.isBooked = isBooked;
+        this.isAssigned = isAssigned;
+        this.isTeacher = isTeacher;
+        this.user = user;
+        this.course = course;
+    }
+
     public long getId() {
         return id;
     }

@@ -20,28 +20,36 @@
         <section>
             <h1>Anslut lärare eller elev till en kurs</h1>
 
-            ---marko jobbar på Ansluta lärare och elever till kurser...---<br/><br/>
-
             <section class="course_details">
                 <h:form>
-                    <h:panelGrid columns="2" styleClass="form-grid" columnClasses="form-column-label,form-column-input">
-                        <h:outputLabel for="userId">Elev #id:</h:outputLabel>
-                        <h:inputText id="userId" value="#{coursesBean.courseTitle}" size="5"/>
+                    <h:panelGrid columns="1" styleClass="form-grid" columnClasses="form-column-label,form-column-input">
+
+                        <h:selectOneMenu>
+                            <h:outputLabel for="userId">Elev (#id): </h:outputLabel>
+                            <f:selectItems value="#{userBean.users.users}" var="user"
+                                           itemValue="#{registeredUserCourseBean.setUserId(user.id)}}"
+                                           itemLabel="${user.name} ${user.lastName}"/>
+                        </h:selectOneMenu>
+                        <br/>
 
                         <ui:remove>TODO: Söka på user och få ut userId</ui:remove>
-
-                        <h:outputLabel for="courseId">Kurs #id:</h:outputLabel>
-                        <h:inputText id="courseId" value="#{coursesBean.courseCode}" size="5"/>
+                        <h:selectOneMenu>
+                            <h:outputLabel for="courseId">Kurs (#id): </h:outputLabel>
+                            <f:selectItems value="#{coursesBean.courses.courses}" var="courses"
+                                           itemValue="#{registeredUserCourseBean.setCourseId(courses.id)}}"
+                                           itemLabel="${courses.courseCode} ${courses.courseTitle}"/>
+                        </h:selectOneMenu>
+                        <br/>
 
                         <ui:remove>TODO: Söka på kurs och få ut courseId</ui:remove>
 
                         <h:outputLabel for="assign">Anslut:</h:outputLabel>
-                        <h:selectBooleanCheckbox id="assign" value="#{coursesBean.description}" size="30"/>
+                        <h:selectBooleanCheckbox id="assign" value="#{registeredUserCourseBean.assigned}" size="30"/>
 
                         <br/>
 
                         <h:outputText value=""/>
-                        <h:commandButton value="Utför" action="#{coursesBean.addCourse}"/>
+                        <h:commandButton value="Utför" action="#{registeredUserCourseBean.addRegisteredUserCourse}"/>
                     </h:panelGrid>
                 </h:form>
             </section>
@@ -51,16 +59,17 @@
             <h:outputText value="Alla rader i :"/>
 
             <h:dataTable id="tbl1" value="#{registeredUserCourseBean.registeredUserCourses}" var="aBean">
-                <h:column >
-                    <f:facet name="header">--Id--</f:facet>
+                <h:column>
+                    <f:facet name="header">*Id*</f:facet>
                     <h:outputText id="id" value="#{aBean.id}"/>
                 </h:column>
-                <h:column >
-                    <f:facet name="header">--UserId--</f:facet>
+                <h:column>
+                    <f:facet name="header">*UserId*</f:facet>
                     <h:outputText id="user_id" value="#{aBean.userId}"/>
                 </h:column>
+
                 <h:column>
-                    <f:facet name="header">--CourseId--</f:facet>
+                    <f:facet name="header">*CourseId*</f:facet>
                     <h:outputText id="course_id" value="#{aBean.courseId}"/>
                 </h:column>
 
@@ -68,10 +77,11 @@
                     <f:facet name="header">Namn:</f:facet>
                     <h:outputText value="#{aBean.userNameFull}"/>
                 </h:column>
+                <h:outputText value='User:'/>
 
                 <h:column>
                     <f:facet name="header">Elev registrerat:</f:facet>
-                    <h:selectBooleanCheckbox value="#{aBean.booked}"/>
+                    <h:selectBooleanCheckbox value="#{aBean.getBooked()}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Admin anslutit:</f:facet>

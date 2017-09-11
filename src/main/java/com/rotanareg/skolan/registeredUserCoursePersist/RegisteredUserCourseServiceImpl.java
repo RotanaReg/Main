@@ -93,4 +93,22 @@ public class RegisteredUserCourseServiceImpl implements RegisteredUserCourseServ
                 reguc.add(r);
         return reguc;
     }
+
+    @Override
+    public void addItem(RegisteredUserCourseDomain domain){
+        //TODO: implement this method
+        assert false;   // break here because this is not implemented yet!
+        // RegisteredUserCourseDomain(Long id, Long userId, Long courseId, Boolean isBooked, Boolean isAssigned, Boolean isTeacher, UserEntity user, CourseEntity course)
+        RegisteredUserCourseEntity entity = new RegisteredUserCourseEntity(domain.getUserId(), domain.getCourseId(), domain.isBooked(), domain.isAssigned(), domain.isTeacher(), null, null);
+        em.persist(entity);
+
+    }
+
+    @Override
+    public void updateItem(RegisteredUserCourseDomain domain){
+        //TODO: implement this method
+        int _break = 1/0;
+        assert false;   // break here because this is not implemented yet!
+    }
+
 }
