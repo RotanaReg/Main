@@ -4,6 +4,7 @@ import com.rotanareg.skolan.domains.AttendanceDomain;
 import com.rotanareg.skolan.domains.User;
 import com.rotanareg.skolan.registeredUserCoursePersist.*;
 import com.rotanareg.skolan.domains.RegisteredUserCourseDomain;
+import com.rotanareg.skolan.userPersist.UserEntity;
 import com.rotanareg.skolan.userPersist.UserService;
 
 import javax.ejb.EJB;
@@ -14,6 +15,7 @@ import java.util.List;
 @ManagedBean
 @RequestScoped
 public class RegisteredUserCourseBean {
+    private Long id;
     private Long userId;
     private Long courseId;
     private Boolean isBooked;   // True när elev registrerat/gjort_instresse-anmälan för en kurs.
@@ -24,7 +26,11 @@ public class RegisteredUserCourseBean {
     RegisteredUserCourseService service;
 
     @EJB
-    UserService pService;
+    UserService userService;
+
+    public RegisteredUserCourseBean(){
+        ;
+    }
 
     public List<RegisteredUserCourseDomain> getRegisteredUserCourses() {
         return service.getRegisteredUserCourses();
@@ -32,23 +38,28 @@ public class RegisteredUserCourseBean {
 
     //public String getUserNameFull(long userId){
     public String getUserNameFull(){
-        User personDomain = pService.getUser(userId);
+        User personDomain = userService.getUser(userId);
         //setId(personDomain.getId());
         //setFirstname(personDomain.getFirstName());
         return personDomain.getName() + " " + personDomain.getLastName();
     }
-/*
-    public String addPerson(){
-        if (getId()==null)
-            personService.addPerson(new PersonDomain(getFirstname(),getLastname()));
-        else
-            personService.updatePerson(new PersonDomain(getId(),getFirstname(),getLastname()));
+
+    public String addRegisteredUserCourse(){
+        if (getId()==null) {
+            //(Long id, Boolean isBooked, Boolean isAssigned, Boolean isTeacher, UserEntity user, CourseEntity course)
+            //service.addPerson(new RegisteredUserCourseDomain(getFirstname(), getLastname()));
+            service.addItem(new RegisteredUserCourseDomain(getUserId(), getCourseId(), getBooked(), getAssigned(), getTeacher(), null, null));               // NOTE: two last args null at the moment???
+        }else {
+            service.updateItem(new RegisteredUserCourseDomain(getId(), getBooked(), getAssigned(), getTeacher(), null, null));  // NOTE: two last args null at the moment???
+        }
 
         setId(null);
-        setFirstname("");
-        setLastname("");
-        return "assign_user";
+        //setFirstname("");
+        //setLastname("");
+        return "admin";
     }
+
+    /*
     public String editPerson(Long id){
         PersonDomain personDomain = personService.getPerson(id);
         setId(personDomain.getId());
@@ -91,6 +102,7 @@ public class RegisteredUserCourseBean {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+    */
 
     public Long getId() {
         return id;
@@ -100,6 +112,54 @@ public class RegisteredUserCourseBean {
         this.id = id;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
+    }
+
+    public boolean getBooked() {
+        if(isBooked==null) return false;
+        return isBooked;
+    }
+
+    public void setBooked(boolean booked) {
+        isBooked = booked;
+    }
+
+    public boolean getAssigned() {
+        if(isAssigned==null) return false;
+        return isAssigned;
+    }
+
+    public void setAssigned(boolean assigned) {
+        isAssigned = assigned;
+    }
+
+    public boolean getTeacher() {
+        if(isTeacher==null) return false;
+        return isTeacher;
+    }
+
+    public void setTeacher(boolean teacher) {
+        isTeacher = teacher;
+    }
+
+    //public UserEntity getUser(){
+   //     return userService.getUser(userId).;
+   // }
+
+/*
     public String getMyFilter() {
         return myFilter;
     }
