@@ -48,7 +48,9 @@ public class SignInBean {
 
         return "index?faces-redirect=true";
     }
-
+    public User getCurrentUser() {
+        return currentUser;
+    }
     public String getUserName() {
         return userName;
     }
