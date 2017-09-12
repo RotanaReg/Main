@@ -19,26 +19,20 @@
     <ui:define name="panel-main">
         <section>
             <h1>Statistik</h1>
-
-            ---marko jobbar på statistik/närvaro-biten...---
-
-            <br/><br/>
-            <h:link styleClass="menuItem" value="stats_test.xhtml" outcome="stats_test"/>
-            <br/><br/>
-
+            
             <h:outputText value="Alla rader:"/>
             <h:dataTable id="tbl1" value="#{attendanceBean.attendances}" var="aBean">
                 <h:column >
-                    <f:facet name="header">--Id--</f:facet>
+                    <f:facet name="header">--Id--</f:facet>// igår tog du bort detta
                     <h:outputText id="id" value="#{aBean.id}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Kurs nr</f:facet>
-                    <h:outputText id="course-nr" value="#{aBean.courseNr}"/>
+                    <h:outputText id="course-nr" value="#{aBean.courseCode}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Kursnamn</f:facet>
-                    <h:outputText id="course-name" value="#{aBean.courseName}"/>
+                    <h:outputText id="course-name" value="#{aBean.courseTitle}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Elev</f:facet>
